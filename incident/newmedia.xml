@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<!DOCTYPE grammar PUBLIC "-//diveintopython.org//DTD Kant Generator Pro v1.0//EN" "kgp.dtd">
+<grammar>
+
+<ref id="name">
+<p><xref id="prenom" /> <xref id="nom" /></p>
+</ref>
+
+<ref id="prenom">
+<p>Jon</p>
+<p>Dilys</p>
+<p>Mustafa</p>
+<p>Lars</p>
+<p>Michelle</p>
+<p>Billy</p>
+<p>Chow</p>
+<p>Huelt</p>
+<p>Theodora</p>
+<p>Eliza</p>
+</ref>
+
+<ref id="nom">
+<p>Hertzwelch</p>
+<p>Paddington</p>
+<p>Bullington</p>
+<p>Canterbury</p>
+<p>Mozart</p>
+<p>Huen</p>
+<p>Dorphin</p>
+</ref>
+
+<ref id="identity">
+<p>Glaswegan</p>
+<p>Norweigan</p>
+<p>Third World</p>
+<p>omnisexual</p>
+<p>bestial</p>
+<p>misanthropic</p>
+</ref>
+
+<ref id="artist">
+<p>visual</p>
+<p>counter-cultural</p>
+<p>contemporary</p>
+<p>computer</p>
+</ref>
+
+<ref id="prof">
+<p>artist</p>
+<p>icon</p>
+<p>messiah</p>
+</ref>
+
+<ref id="pronoun">
+<p>This</p>
+<p><xref id="name" />'s</p>
+<p>New</p>
+<p>Shockwaves from</p>
+<p>Breakthrough:</p>
+<p><xref id="identity" /> <xref id="artist" /> <xref id="prof" />'s</p>
+</ref>
+
+<ref id="the">
+<p> the</p>
+<p></p>
+</ref>
+
+<ref id="noun">
+<p>fractal</p>
+<p>binary</p>
+<p>imaginary</p>
+<p>hyper reality</p>
+<p>media</p>
+<p><xref id="bits"/><xref id="bytes"/></p>
+<p>bit</p>
+<p>economy</p>
+<p>phenomenon</p>
+<p><xref id="bits"/><xref id="bytes"/></p>
+<p>revolution</p>
+</ref>
+
+<ref id="bytes">
+<p>sphere</p>
+<p>ware</p>
+<p>porn</p>
+<p>verse</p>
+<p>reality</p>
+</ref>
+
+<ref id="bits">
+<p>soft</p>
+<p>hard</p>
+<p>liquid</p>
+<p>bio</p>
+<p>soggy</p>
+<p>hyper</p>
+<p>digi</p>
+<p>sofa</p>
+<p>omni</p>
+</ref>
+
+<ref id="realnouns">
+<p>computer science</p>
+<p>consumer</p>
+<p>gadget</p>
+<p>system</p>
+<p><xref id="bits" />ware</p>
+<p>gaming device</p>
+</ref>
+
+<ref id="arts">
+<p>pop</p>
+<p>classical</p>
+<p>digital</p>
+<p>media</p>
+<p>hyper</p>
+</ref>
+
+<ref id="adjective">
+<p><xref id="arts" />art</p>
+<p>binary</p>
+<p>digital</p>
+<p>fractal</p>
+<p>social</p>
+<p>rhyzomatic</p>
+<p>Foucauldian</p>
+<p>meta</p>
+<p>pixelated</p>
+<p>CGI</p>
+<p>emergent</p>
+</ref>
+
+<ref id="power">
+<p>power</p>
+<p>influence</p>
+<p>relevence</p>
+<p>narrative</p>
+</ref>
+
+<ref id="adverb">
+<p>catastrophic</p>
+<p>rising</p>
+<p>decreasing</p>
+<p>hyperbolic</p>
+<p>logarithmic</p>
+<p>hyperbolic</p>
+</ref>
+
+<ref id="inverts">
+<p>inverts</p>
+<p>challenges</p>
+<p>destabilises</p>
+</ref>
+
+<ref id="prefix">
+<p>post-</p>
+<p>pre-</p>
+<p>neo-</p>
+<p>quasi-</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+</ref>
+
+<ref id="time">
+<p>beginning</p>
+<p>end</p>
+<p>anniversary</p>
+<p>dilema</p>
+<p>inescapability</p>
+</ref>
+
+<ref id="linking">
+<p><xref id="inverts" /> our perspective on</p>
+<p>paints all <xref id="realnouns"/>s with the brush of</p>
+<p>reminds us of the <xref id="adverb"/> <xref id="power"/> of</p>
+<p>takes us back to the golden days of</p>
+<p><xref id="inverts"/> the <xref id="power"/> of</p>
+<p>marks the <xref id="time" /> of</p>
+</ref>
+
+<ref id="sentence">
+<p><xref id="pronoun" /> <xref id="prefix" /><xref id="adjective" /> <xref id="realnouns" /> <xref id="linking" /><xref id="the" /> <xref id="prefix" /><xref id="adjective" /> <xref id="prefix" /><xref id="noun" /></p>
+</ref>
+</grammar>

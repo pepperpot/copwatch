@@ -1,0 +1,195 @@
+body {
+  background-color: white;
+}
+
+hr {
+  color: black;
+  background-color: black;
+  border: none;
+}
+.header {
+  display: block;
+
+  background-color: black;
+  color: white;
+  height: 100px;
+}
+
+.header h1 {
+  display: block;
+  margin-top: 60px;
+  height: 40px;
+}
+
+.menu {
+  background-color: black;
+  margin-top: 10px;
+}
+.menu ul {
+  padding: 0;
+  list-style: none;
+}
+
+.menu ul a {
+  height: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu ul a:hover {
+  color: #525252;
+}
+
+.content {
+
+}
+
+.incident_list {
+  padding: 0;
+  list-style: none;
+  margin-top: 10px;
+}
+
+.incident {
+  margin-bottom: 10px;
+  padding: 10px;
+  height: 180px;
+  background-color: #525252;
+}
+
+.incident .image {
+  height: 140px;
+  background-color: #590000;
+}
+
+.incident .image img {
+  display: block;
+  height: 140px;
+  width: 140px;
+}
+
+.incident h3 {
+  font-size: 14px;
+  margin-bottom: 2px;
+} 
+
+.incident h3 a {
+  color: #444;
+  text-decoration: none;
+}
+
+.incident h3 a:hover {
+  color: black;
+}
+
+.incident .time {
+  font-size: 12px;
+  
+}
+
+.footer {
+  font-size: 12px;
+  color: white;
+  display: block;
+  margin-top: 10px;
+  background-color: #525252;
+  height: 20px;
+}
+.footer p {
+  margin: 0;
+}
+
+.searchbar {
+  float: right;
+  background-color: #525252;
+  margin-top: 10px;
+}
+
+.search {
+  float: right;
+  margin: 10px;
+}
+
+.incident_form, 
+{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.incident_form .box {
+  background: grey;
+  height: 60px;
+  padding-top: 10px;
+}
+
+.incident_form .info {
+  background-color: black;
+  color: white;
+  height: 70px;
+}
+
+.incident_form .info h4,
+.incident_form .info p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.incident_form .field {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.incident_form .errorbox {
+  display: block;
+  height: auto;
+  background-color: black;
+  color: white;
+  font-style: italic;
+  outline: solid 1px red;
+  margin-bottom: 5px;
+}
+.incident_form .field input,
+.incident_form .field label {
+  float: left;
+  clear: left;
+}
+
+.pagination {
+  margin-top: 10px;
+  font-size: 11px;
+  color: white;
+  background-color: black;
+  text-align: center;
+}
+
+.pagination span {
+  margin-left: auto;
+  margin-right: auto;
+}
+.pagination a {
+  text-decoration: none;
+  color: white;
+}
+
+.pagination a:hover {
+  color: #525252;
+}
+
+.query_header {
+  margin-top: 10px;
+  background-color: #525252;
+}
+
+.query_header h3 {
+  font-size: 14px;
+  text-align: center;
+}
+
+.query_header p {
+  font-size: 11px;
+  margin: 5px;
+}

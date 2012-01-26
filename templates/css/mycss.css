@@ -1,0 +1,48 @@
+body {
+  background-color: white;
+}
+
+.header {
+  display: block;
+
+  background-color: black;
+  color: white;
+  height: 100px;
+}
+
+.header h1 {
+  display: block;
+  margin-top: 60px;
+  height: 40px;
+}
+
+.menu {
+  background-color: black;
+  margin-top: 10px;
+}
+.menu ul {
+  padding: 0;
+  list-style: none;
+}
+
+.menu ul a {
+  height: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.content {
+  height: auto;
+}
+
+.footer {
+  font-size: 12px;
+  color: white;
+  display: block;
+  margin-top: 10px;
+  background-color: black;
+  height: 20px;
+}
+.footer p {
+  margin: 0;
+}

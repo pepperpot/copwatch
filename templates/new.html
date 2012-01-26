@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block title %} Report Incident {% endblock %}
+
+{% block content %}
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+    <div class="grid_7 alpha incident_form">
+      <form action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="grid_7 field alpha omega">
+            {% if form.event.errors %}
+                <div class="grid_6 alpha errorbox">
+                  {{form.event.errors}}
+                </div>
+            {% endif %}
+            <div class="grid_3 alpha box">
+              <label for="id_event">Type of Incident:</label>
+              {{ form.event }}
+            </div>
+            <div class="grid_3 info">
+              <h4>Hey</h4>
+              <p>Ho</p>
+            </div>
+          </div>
+          <div class="grid_7 field alpha omega">
+            {% if form.date.errors %}
+                <div class="grid_6 alpha errorbox">
+                  {{form.date.errors}}
+                </div>
+            {% endif %}
+            <div class="grid_3 alpha box">
+              <label for="id_date">Date of incident:</label>
+              {{ form.date }}
+            </div>
+            <div class="grid_3 info">
+              <h4>Hey</h4>
+              <p>Ho</p>
+            </div>
+          </div>
+          <div class="grid_7 field alpha omega">
+            {% if form.time.errors %}
+                <div class="grid_6 alpha errorbox">
+                  {{form.time.errors}}
+                </div>
+            {% endif %}
+            <div class="grid_3 alpha box">
+              <label for="id_time">Time of Incident:</label>
+              {{ form.time }}
+            </div>
+            <div class="grid_3 info">
+              <h4>Hey</h4>
+              <p>Ho</p>
+            </div>
+          </div>
+          <div class="grid_7 field alpha omega">
+            {% if form.loc.errors %}
+                <div class="grid_6 alpha errorbox">
+                  {{form.loc.errors}}
+                </div>
+            {% endif %}
+            <div class="grid_3 alpha box">
+              <label for="id_loc">Location:</label>
+              {{ form.loc }}
+            </div>
+            <div class="grid_3 info">
+              <h4>Hey</h4>
+              <p>Ho</p>
+            </div>
+          </div>
+          <div class="grid_7 field alpha omega">
+            {% if form.notes.errors %}
+                <div class="grid_6 alpha errorbox">
+                  {{form.notes.errors}}
+                </div>
+            {% endif %}
+            <div class="grid_3 alpha box">
+              
+              <label for="id_notes">Notes:</label>
+              {{ form.notes }}
+            </div>
+            <div class="grid_3 info">
+              <h4>Hey</h4>
+              <p>Ho</p>
+            </div>
+          </div>
+          <div class="grid_7 field alpha omega">
+            <div class="grid_3 alpha box">
+              {{ form.cop.errors }}
+              <label for="id_cop">Cop:</label>
+              {{ form.cop }}
+            </div>
+            <div class="grid_3 info">
+              <h4>Hey</h4>
+              <p>Ho</p>
+            </div>
+          </div>
+          <div class="grid_7 field alpha omega">
+            <div class="grid_3 alpha box">
+              {{ form.image.errors }}
+              <label for="id_image">Image:</label>
+              {{ form.image }}
+            </div>
+            <div class="grid_3 info">
+              <h4>Hey</h4>
+              <p>Ho</p>
+            </div>
+          </div>
+          <div class="grid_7 input alpha omega">
+            <input type="submit" value="Submit"/>
+          </div>
+        </form>
+      </div>
+{% endblock %}

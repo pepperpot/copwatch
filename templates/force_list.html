@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p> {{ query }} </p>
+
+<div class="grid_9 force_list alpha">
+{% for force in forces_list %}
+  <div class="grid_7 force alpha">
+    <h3> <a href="/incident/force/{{ force.badge }}/">{{force}}<a></h3>
+    <p> details asfkjhdds sd sdg fdsg sfg sf</p>
+  </div>
+{% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %} Recent Incidents {% endblock %}
+
+{% block content %}
+
+<ul class="grid_7 incident_list alpha">
+{% for incident in recent_incidents %}
+<div class="grid_7 incident alpha ">
+<h3>{{incident.event}} involving {% for cop in incident.cop.all %} {{cop}} {% endfor %}</h3>
+<p>{{incident.date}}, {{incident.time}} <p>
+<hr/>
+<p> {{incident.notes}}</p>
+</div>
+{% endfor %}
+</ul>
+
+{% endblock %}	

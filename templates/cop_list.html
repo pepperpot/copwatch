@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p> {{ query }} </p>
+
+<div class="grid_9 cop_list alpha">
+{% for cop in cops_list %}
+  <div class="grid_7 cop alpha">
+    <h3> <a href="/incident/cop/{{ cop }}/">{{cop}}<a></h3>
+    <p> details asfkjhdds sd sdg fdsg sfg sf</p>
+  </div>
+{% endfor %}
+</div>
+
+{% endblock %}

@@ -9,9 +9,24 @@ from django.core.exceptions import ObjectDoesNotExist
 import cairo
 import cairodraw
 
+"""
+Views for Incidents app
+
+- needs to be broken up as app is modularised
+
+"""
+
+
 #list views
 
 def recent(request):
+  """
+  Returns list of all incidents most recent first using pagination
+  helper.
+  
+  -should be generalisd and merged with other lists using subclass of
+  django.models.detailview 
+  """
 	recent_incidents = Incident.objects.order_by('-date','-time')
 	incidents = paginate(request, recent_incidents)
 	return render_to_response('incident_list.html', { 
@@ -22,6 +37,14 @@ def recent(request):
 
 					
 def cop_list(request, badge_search):
+  """
+  Returns list of incidents involving a particular police officer in order of 
+  date ( -date, -time ).
+  
+  Displays 'query header' giving information on the officer (name, badge, etc.)
+  
+  
+  """
 	cop = Cop.objects.get(badge=badge_search.upper())
 	events = {}
 	for incident in cop.incident_set.all():

@@ -193,3 +193,13 @@ hr {
   font-size: 11px;
   margin: 5px;
 }
+
+.graph {
+  background-color: #626262;
+  padding: 10px;
+}
+
+.graph svg {
+  display: block;
+  height: auto;
+}

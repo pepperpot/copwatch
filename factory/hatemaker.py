@@ -280,7 +280,7 @@ def main(argv):
 	time.sleep(0.2)
 
 def incident_text():
-  grammar = "incident/newmedia.xml"
+  grammar = "factory/newmedia.xml"
   k = KantGenerator(grammar)
   k1 = k.refresh()
   return k1   

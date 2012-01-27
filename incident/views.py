@@ -190,11 +190,16 @@ def search(request, model):
 							
 							
 # Graaphs
-def graph_from_template(data):
-  t = loader.get_template('graph/graph.svg')  
-  longest = max(data.values())*1.1
-  data = [{'label': '%s: %s'%(x, y), 'width': (y/longest)*100, 'name': x} for x,y in data.items()]
-  c = Context({'data': data })
+def graph_from_template(data, width=180):
+  t = loader.get_template('graph/graph.svg') 
+  height = (len(data) + 2) * 10 
+  longest = max(data.values()) # finds unit at end of x axis, giving buffer zone 
+  data = [{'label': '%s: %s'%(x, y), 'width': (float(y)/longest)*width, 'name': x} for x,y in data.items()]
+  grid_interval = float(width)/longest
+  grid = [{'x': n, 'x_width': (n*grid_interval) + 100, 'width': (n*grid_interval)} for n in range(longest+1)]
+  while len(grid) > 10:
+    grid = [grid[n] for n in range(len(grid)) if n%2==0]
+  c = Context({'data': data, 'grid': grid, 'height': height})
   response = t.render(c)
   return response
 

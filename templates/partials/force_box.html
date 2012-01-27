@@ -1,6 +1,18 @@
-<div class="grid_9 query_header cop alpha">
-  <h3> {{ force.badge }} {% if force.name %}, {{force.name }} {% endif %}</h3>
+<div class="grid_9 query_header cop alpha"> 
+    <div class="grid_5 push_2 head">
+      <h3> {{ force.badge }}</h3>
+    </div>
   <div class="grid_4 graph alpha">
   {{graph}}
   </div>
+    <ul class="grid_3 omega summary">
+      <li>
+        <span class="grid_1 alpha key">Force:</span>
+        <span class="grid_2 omega value">{{ force.name }} </span>
+      </li>
+      <li>
+        <span class="grid_1 alpha key">Badge:</span>
+        <span class="grid_2 omega value">{{ force.badge }} </span>
+      </li>   
+    </ul>  
 </div>

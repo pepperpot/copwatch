@@ -2,12 +2,11 @@
 
 {% block title %} {{title}} {% endblock %}
 
-{% block content %}
-{% if query_box %}
-
+{% block query_box %}
 {{ query_box }}
+{% endblock %}
 
-{% endif %}
+{% block content %}
 
 <ul class="grid_9 incident_list alpha">
 {% for incident in incident_list.object_list %}

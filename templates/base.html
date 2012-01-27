@@ -4,6 +4,33 @@
   <HEAD>
     <link rel="stylesheet" href="{% get_static_prefix %}css/960_12_col.css">
     <link rel="stylesheet" href="{% get_static_prefix %}css/mycss.css">
+    <script type="text/javascript" src="js/jquery-1.2.6.min.js"></script>
+    <script type="text/javascript" src="js/notes.js"></script>
+    {% block extra_script %}
+    <script type="text/javascript">
+    function returnQueryBox()
+    {
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+      {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+      }
+    else
+      {//code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+    xmlhttp.onreadystatechange=function()
+      {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+        document.getElementById("side_query_box").innerHTML=xmlhttp.responseText;
+        }
+      }
+    xmlhttp.open("Get", "incident/copbox", true);
+    xmlhttp.send();
+    }
+    </script>
+    {% endbock %}
       <TITLE>
       CopWatch | {% block title %}{% endblock %}
       </TITLE>
@@ -40,6 +67,10 @@
 	        </form>	       
 	      </div>
 	      {% endblock %}
+	      
+	      {% block query_box %}
+	      {% endblock %}
+	      
 	      {% block content %}
         {% endblock %}
       </div>

@@ -2,6 +2,8 @@ body {
   background-color: white;
 }
 
+/* Header */
+
 hr {
   color: black;
   background-color: black;
@@ -20,6 +22,10 @@ hr {
   margin-top: 60px;
   height: 40px;
 }
+
+
+
+/* Menu */
 
 .menu {
   background-color: black;
@@ -44,6 +50,8 @@ hr {
 .content {
 
 }
+
+/* Incident list */
 
 .incident_list {
   padding: 0;
@@ -88,6 +96,9 @@ hr {
   
 }
 
+
+/* Footer */
+
 .footer {
   font-size: 12px;
   color: white;
@@ -100,6 +111,8 @@ hr {
   margin: 0;
 }
 
+/* Search Bar */
+
 .searchbar {
   float: right;
   background-color: #525252;
@@ -110,6 +123,10 @@ hr {
   float: right;
   margin: 10px;
 }
+
+
+
+/* Incident Form */
 
 .incident_form, 
 {
@@ -158,6 +175,10 @@ hr {
   clear: left;
 }
 
+
+
+/* Pagination*/
+
 .pagination {
   margin-top: 10px;
   font-size: 11px;
@@ -179,19 +200,24 @@ hr {
   color: #525252;
 }
 
+
+/* query_box */
+
 .query_header {
   margin-top: 10px;
   background-color: #525252;
 }
 
-.query_header h3 {
-  font-size: 14px;
+.query_header .head {
   text-align: center;
 }
 
-.query_header p {
-  font-size: 11px;.
-  margin: 5px;
+.query_header .head h3 {
+  font-size: 14px;
+}
+.query_header .head p {
+  font-size: 11px;
+  margin-bottom: 5px;
 }
 
 .query_header a {
@@ -202,7 +228,21 @@ hr {
 .query_header a:hover {
   color: black;
 }
+
+.query_header ul {
+  list-style: none;
+  background-color: #888;
+}
+
+.query_header ul li{
+  background-color: #666;
+  margin-top: 5px;
+} 
+
+.query_header ul li .key{
   
+}
+
 
 .graph {
   background-color: #626262;

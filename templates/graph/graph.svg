@@ -1,0 +1,35 @@
+
+
+
+<svg  xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="myLinearGradient1"
+                    x1="0%" y1="0%"
+                    x2="100%" y2="0%"
+                    spreadMethod="pad">
+      <stop offset="0%" stop-color="#006600" stop-opacity="1"/>              
+      <stop offset="100%"   stop-color="#00cc00" stop-opacity="1"/>
+      
+    </linearGradient>
+  </defs>
+  <style>
+  g.bar:hover{
+    opacity: 0.5;
+  }
+  </style>
+  <g class="main" width="400" height="300">
+  <rect x="0" y="0" width="400" height="300" fill="#000000" opacity="0.2" />
+    {% for elem in data %}
+      <text id="label" x="10" y = "{{ forloop.counter }}5"
+            style="font-size:10px;"> 
+      {{ elem.name }}
+      </text>
+      <g class="bar" cursor="pointer">
+        <rect id="bar" x="60" y="{{ forloop.counter }}0" height="5" width="{{ elem.width }}%"
+        fill="url(#myLinearGradient1)" title="{{ elem.label }}"/>
+      </g>
+    {% endfor %}
+  </g>
+
+</svg>

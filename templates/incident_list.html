@@ -9,9 +9,9 @@
   {% if query.class == Cop %}
     <p> {% if query.force %} works for <a href="/incident/force/{{query.force.badge}}"> {{query.force}}</a> Police {% endif %} </p>
   {% endif %}
-  {% for event, tally in events %}
-  <p> {{event}} : {{tally}} </p>
-  {% endfor %}
+  <div class="grid_7 graph alpha">
+  {{graph}}
+  </div>
 </div>
 {% else %}
 <p> {{query}} </p>

@@ -4,10 +4,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from models import Incident, Cop, Force
 from forms import IncidentForm, CopForm
-from django.template import RequestContext
+from django.template import RequestContext, Context, loader
 from django.core.exceptions import ObjectDoesNotExist
-import cairo
-import cairodraw
 
 """
 Views for Incidents app
@@ -20,13 +18,13 @@ Views for Incidents app
 #list views
 
 def recent(request):
-  """
-  Returns list of all incidents most recent first using pagination
-  helper.
-  
-  -should be generalisd and merged with other lists using subclass of
-  django.models.detailview 
-  """
+	"""
+	Returns list of all incidents most recent first using pagination
+	helper.
+
+	-should be generalisd and merged with other lists using subclass of
+	django.models.detailview 
+	"""
 	recent_incidents = Incident.objects.order_by('-date','-time')
 	incidents = paginate(request, recent_incidents)
 	return render_to_response('incident_list.html', { 
@@ -37,14 +35,14 @@ def recent(request):
 
 					
 def cop_list(request, badge_search):
-  """
-  Returns list of incidents involving a particular police officer in order of 
-  date ( -date, -time ).
-  
-  Displays 'query header' giving information on the officer (name, badge, etc.)
-  
-  
-  """
+	"""
+	Returns list of incidents involving a particular police officer in order of 
+	date ( -date, -time ).
+
+	Displays 'query header' giving information on the officer (name, badge, etc.)
+
+
+	"""
 	cop = Cop.objects.get(badge=badge_search.upper())
 	events = {}
 	for incident in cop.incident_set.all():
@@ -55,10 +53,11 @@ def cop_list(request, badge_search):
   		
 	cop_incidents = cop.incident_set.all().order_by('-time', '-date')
 	cop_incidents = paginate(request, cop_incidents)
+	graph = graph_from_template(events)
 	return render_to_response('incident_list.html',{
 							'title'					: 'cop search - %s' % cop,
 							'incident_list' : cop_incidents,
-							'events' 				: events.items(),
+							'graph' 				: graph,
 							'query' 				: cop,
 							'query_header' 	: True,
 							 })
@@ -75,13 +74,14 @@ def force_list(request, badge_code):
 				else: 
 					events[i.event] += 1
 				incidents.append(i)
+	graph = graph_from_template(events)
 	incidents =	paginate(request, incidents)
 	return render_to_response('incident_list.html' ,{
 							'title'					: 'force search - %s' % force,
 							'incident_list' : incidents,
 							'query' 				: force,
 							'query_header' 	: True,
-							'events'				: events.items(),
+							'graph'				: graph,
 							})
 							 
 #publish forms
@@ -190,6 +190,12 @@ def search(request, model):
 							
 							
 # Graaphs
-
+def graph_from_template(data):
+  t = loader.get_template('graph/graph.svg')  
+  longest = max(data.values())*1.1
+  data = [{'label': '%s: %s'%(x, y), 'width': (y/longest)*100, 'name': x} for x,y in data.items()]
+  c = Context({'data': data })
+  response = t.render(c)
+  return response
 
 

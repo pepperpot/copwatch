@@ -1,0 +1,8 @@
+<div class="grid_9 query_header cop alpha">
+  <h3> {{ cop.badge }} {% if cop.name %}, {{cop.name }} {% endif %}</h3>
+    <p> {% if cop.force %} works for 
+      <a href="/incident/force/{{cop.force.badge}}"> {{cop.force}}</a> Police {% endif %} </p>
+  <div class="grid_4 graph alpha">
+  {{graph}}
+  </div>
+</div>

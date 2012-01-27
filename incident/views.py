@@ -53,13 +53,12 @@ def cop_list(request, badge_search):
   		
 	cop_incidents = cop.incident_set.all().order_by('-time', '-date')
 	cop_incidents = paginate(request, cop_incidents)
-	graph = graph_from_template(events)
+	query_box = render_querybox('cop', cop, events)
+
 	return render_to_response('incident_list.html',{
 							'title'					: 'cop search - %s' % cop,
 							'incident_list' : cop_incidents,
-							'graph' 				: graph,
-							'query' 				: cop,
-							'query_header' 	: True,
+							'query_box' 	: query_box,
 							 })
 							 
 def force_list(request, badge_code):
@@ -74,14 +73,12 @@ def force_list(request, badge_code):
 				else: 
 					events[i.event] += 1
 				incidents.append(i)
-	graph = graph_from_template(events)
+	query_box = render_querybox('force', force, events)
 	incidents =	paginate(request, incidents)
 	return render_to_response('incident_list.html' ,{
 							'title'					: 'force search - %s' % force,
 							'incident_list' : incidents,
-							'query' 				: force,
-							'query_header' 	: True,
-							'graph'				: graph,
+							'query_box'			: query_box,
 							})
 							 
 #publish forms
@@ -202,5 +199,12 @@ def graph_from_template(data, width=180):
   c = Context({'data': data, 'grid': grid, 'height': height})
   response = t.render(c)
   return response
+
+def render_querybox(model, instance, events):
+	graph = graph_from_template(events)
+	t = loader.get_template('partials/%s_box.html'% model)
+	c = Context({'%s' %(model): instance, 'graph': graph})
+	query_box = t.render(c)
+	return query_box
 
 

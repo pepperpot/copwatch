@@ -190,9 +190,19 @@ hr {
 }
 
 .query_header p {
-  font-size: 11px;
+  font-size: 11px;.
   margin: 5px;
 }
+
+.query_header a {
+  text-decoration: none;
+  color: #222;
+}
+
+.query_header a:hover {
+  color: black;
+}
+  
 
 .graph {
   background-color: #626262;

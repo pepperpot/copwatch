@@ -3,18 +3,10 @@
 {% block title %} {{title}} {% endblock %}
 
 {% block content %}
-{% if query_header %}
-<div class="grid_9 query_header alpha">
-  <h3> {{ query.badge }} {% if query.name %}, {{query.name }} {% endif %}</h3>
-  {% if query.class == Cop %}
-    <p> {% if query.force %} works for <a href="/incident/force/{{query.force.badge}}"> {{query.force}}</a> Police {% endif %} </p>
-  {% endif %}
-  <div class="grid_4 graph alpha">
-  {{graph}}
-  </div>
-</div>
-{% else %}
-<p> {{query}} </p>
+{% if query_box %}
+
+{{ query_box }}
+
 {% endif %}
 
 <ul class="grid_9 incident_list alpha">

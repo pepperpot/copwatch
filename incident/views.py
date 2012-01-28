@@ -6,6 +6,8 @@ from models import Incident, Cop, Force
 from forms import IncidentForm, CopForm
 from django.template import RequestContext, Context, loader
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils import simplejson
+
 
 """
 Views for Incidents app
@@ -44,41 +46,25 @@ def cop_list(request, badge_search):
 
 	"""
 	cop = Cop.objects.get(badge=badge_search.upper())
-	events = {}
-	for incident in cop.incident_set.all():
-		if incident.event not in events:
-			events[incident.event] = 1
-		else:
-			events[incident.event] += 1
-  		
-	cop_incidents = cop.incident_set.all().order_by('-time', '-date')
-	cop_incidents = paginate(request, cop_incidents)
-	query_box = render_querybox('cop', cop, events)
+	events, incidents = incidents_data('cop', cop)
+	incidents = paginate(request, incidents)
+	query_header = render_querybox('cop', cop, events)
 
 	return render_to_response('incident_list.html',{
 							'title'					: 'cop search - %s' % cop,
-							'incident_list' : cop_incidents,
-							'query_box' 	: query_box,
+							'incident_list' : incidents,
+							'query_header' 	: query_header,
 							 })
 							 
 def force_list(request, badge_code):
 	force = Force.objects.get(badge=badge_code.upper())
-	incidents = []
-	events = {}
-	for cop in force.cop_set.all():
-		for i in cop.incident_set.all().order_by('-time', '-date'):
-			if not i in incidents:
-				if not i.event in events:
-					events[i.event] = 1
-				else: 
-					events[i.event] += 1
-				incidents.append(i)
-	query_box = render_querybox('force', force, events)
+	events, incidents = incidents_data('force', force)
+	query_header = render_querybox('force', force, events)
 	incidents =	paginate(request, incidents)
 	return render_to_response('incident_list.html' ,{
 							'title'					: 'force search - %s' % force,
 							'incident_list' : incidents,
-							'query_box'			: query_box,
+							'query_header'	: query_header,
 							})
 							 
 #publish forms
@@ -200,17 +186,37 @@ def graph_from_template(data, width=180):
   response = t.render(c)
   return response
 
-def render_querybox(model, instance, events):
-	graph = graph_from_template(events)
-	t = loader.get_template('partials/%s_box.html'% model)
-	c = Context({'%s' %(model): instance, 'graph': graph})
+def render_querybox(model, instance, events, width = 8):
+	if width == 8:
+		graph_width = 180
+	else:
+		graph_width = 140
+	graph = graph_from_template(events, graph_width)
+	t = loader.get_template('partials/%s_box.html'% (model))
+	c = Context({'%s' %(model): instance, 'graph': graph, 'size': width})
 	query_box = t.render(c)
 	return query_box
 	
 	
 #copbox##
 
-def copbox(request):
-  return HttpResponse('<head>Response</head><response> hello </response>')
+def copbox(request, badge):
+  cop = Cop.objects.get(badge = badge.upper())
+  events = incidents_data('cop', cop)[0]
+  response = render_querybox('cop', cop, events, 4)
+  return HttpResponse(response)
 
+def incidents_data(model, instance):
+	if model == 'cop':
+		cop_set = [instance]
+	else:
+		cop_set = instance.cop_set.all()
+	incidents = Incident.objects.filter(cop__in=cop_set).order_by('-time', '-date')
+	events = {}
+	for i in incidents:
+		if not i.event in events:
+			events[i.event] = 1
+		else: 
+			events[i.event] += 1
+	return (events, incidents)
 

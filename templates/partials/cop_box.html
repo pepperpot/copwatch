@@ -1,11 +1,11 @@
-<div class="grid_9 query_header cop alpha"> 
-    <div class="grid_5 push_2 head">
+<div class="grid_{{ size }} query_header cop alpha omega"> 
+    <div class="grid_{% if size == '8' %}5{% else %}4{% endif %} head">
     <h3> {{ cop.badge }}</h3>
     <p> {% if cop.force %} Works for 
       <a href="/incident/force/{{cop.force.badge}}"> {{cop.force}}
-      </a> Police {% endif %} </p>
+      </a> Police {% endif %} </p> <a href="/incident/editcop_{{ cop }} "> edit cop </a>
     </div>
-  <div class="grid_4 graph alpha">
+  <div class="grid_3 graph alpha {% if not size == '8' %} omega {% endif %}">
   {{graph}}
   </div>
     <ul class="grid_3 omega summary">

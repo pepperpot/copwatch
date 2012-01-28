@@ -8,7 +8,7 @@
     <script type="text/javascript" src="{% get_static_prefix %}js/notes.js"></script>
     {% block extra_script %}
     <script type="text/javascript">
-    function returnQueryBox()
+    function returnQueryBox(badge)
     {
     var xmlhttp;
     if (window.XMLHttpRequest)
@@ -23,10 +23,10 @@
       {
       if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
-        document.getElementById("side_query_box").innerHTML=xmlhttp.responseHeader;
+        document.getElementById("side_query_box").innerHTML=xmlhttp.responseText;
         }
       }
-    xmlhttp.open("Get", "/incident/copbox", true);
+    xmlhttp.open("Get", "/incident/copbox" + badge, true);
     xmlhttp.send();
     }
     </script>
@@ -51,10 +51,17 @@
       </div> 
       {% block pagination-top %}
       {% endblock %}
-      <div class="grid_12 content">
-
+      <div class="grid_8  content">
+        {% block query_header %}
+	      {% endblock %}
+	      
+	      {%block content %}
+	      {% endblock %}
+	    </div>  
+      <div class="grid_4 sidebar omega">
+      
       {% block searchbar %}
-        <div class="grid_3 searchbar omega">      
+        <div class="grid_4 searchbar omega">      
 	        <form class="search" action="/incident/cop" method="get">
 	          <label for="cop_search"> Search Incidents by Badge Number</label>
 		        <input type="text" name="q" id="cop_search">      
@@ -68,16 +75,17 @@
 	      </div>
 	      {% endblock %}
 	      
-	      {% block query_box %}
-	      {% endblock %}
 	      
-	      <div class="grid_3" id="side_query_box">
+	      
+	      <div class="grid_4 side_query_box alpha omega" id="side_query_box">
 	      {% block side_query_box %}
 	      {% endblock %}
 	      </div>
-	      {% block content %}
-        {% endblock %}
-      </div>
+	      </div>	      
+
+        
+        
+    
       {% block pagination-bottom %}
       {% endblock %}
       <div class="grid_12 footer"><p> thank you for enjoying my website.</p> </div>

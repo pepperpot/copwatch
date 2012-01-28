@@ -61,7 +61,7 @@ hr {
 
 .incident {
   margin-bottom: 10px;
-  padding: 10px;
+
   height: 180px;
   background-color: #525252;
 }
@@ -199,6 +199,9 @@ hr {
 .pagination a:hover {
   color: #525252;
 }
+.side_bar {
+  float: right;
+}
 
 
 /* query_box */
@@ -243,10 +246,18 @@ hr {
   
 }
 
+/* query_box*/
+
+.side_query_box {
+  float: right;
+  background-color: #525252;
+  margin-top: 10px;
+}
 
 .graph {
   background-color: #626262;
   padding: 10px;
+  float: center;
 }
 
 .graph svg {

@@ -206,5 +206,11 @@ def render_querybox(model, instance, events):
 	c = Context({'%s' %(model): instance, 'graph': graph})
 	query_box = t.render(c)
 	return query_box
+	
+	
+#copbox##
+
+def copbox(request):
+  return HttpResponse('<head>Response</head><response> hello </response>')
 
 

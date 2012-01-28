@@ -10,5 +10,6 @@ urlpatterns = patterns('',
 	url(r'^force/$', views.force_search),
 	url(r'^force/(\D{1,3})/$', views.force_list),
 	url(r'^editcop_(\w{2,6})/$', views.update_cop),
+	url(r'^copbox/$', views.copbox),
 
 )

@@ -4,8 +4,8 @@
   <HEAD>
     <link rel="stylesheet" href="{% get_static_prefix %}css/960_12_col.css">
     <link rel="stylesheet" href="{% get_static_prefix %}css/mycss.css">
-    <script type="text/javascript" src="js/jquery-1.2.6.min.js"></script>
-    <script type="text/javascript" src="js/notes.js"></script>
+    <script type="text/javascript" src="{% get_static_prefix %}js/jquery-1.2.6.min.js"></script>
+    <script type="text/javascript" src="{% get_static_prefix %}js/notes.js"></script>
     {% block extra_script %}
     <script type="text/javascript">
     function returnQueryBox()
@@ -23,10 +23,10 @@
       {
       if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
-        document.getElementById("side_query_box").innerHTML=xmlhttp.responseText;
+        document.getElementById("side_query_box").innerHTML=xmlhttp.responseHeader;
         }
       }
-    xmlhttp.open("Get", "incident/copbox", true);
+    xmlhttp.open("Get", "/incident/copbox", true);
     xmlhttp.send();
     }
     </script>
@@ -71,6 +71,10 @@
 	      {% block query_box %}
 	      {% endblock %}
 	      
+	      <div class="grid_3" id="side_query_box">
+	      {% block side_query_box %}
+	      {% endblock %}
+	      </div>
 	      {% block content %}
         {% endblock %}
       </div>

@@ -4,6 +4,7 @@
     <p> {% if cop.force %} Works for 
       <a href="/incident/force/{{cop.force.badge}}"> {{cop.force}}
       </a> Police {% endif %} </p> <a href="/incident/editcop_{{ cop }} "> edit cop </a>
+      <a href="/incident/cop/{{ cop }}"> More info </a>
     </div>
   <div class="grid_3 graph alpha {% if not size == '8' %} omega {% endif %}">
   {{graph}}

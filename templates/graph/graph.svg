@@ -28,7 +28,7 @@
       <path d="M 100 10 m {{ g.width }} 0 l 0 65%" stroke-width="0.5" stroke="black"/>
     {% endfor %}
     {% for elem in data %}
-      <text id="label" x="10" y = "{{ forloop.counter }}9"
+      <text id="label" x="10" y ="{{ forloop.counter }}9"
             style="font-size:10px;"> 
       {{ elem.name }}
       </text>

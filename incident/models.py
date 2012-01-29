@@ -13,7 +13,7 @@ class Force(models.Model):
 	-eventually geodjango?
 	"""
 
-	badge = models.CharField(max_length=3)
+	badge = models.CharField(max_length=3, unique=True)
 	name = models.CharField(max_length=60)
 
 	def __unicode__(self):
@@ -27,7 +27,7 @@ class Cop(models.Model):
 	name: can be blank
 	foce: foreignkey field to force model ( can be blank)
 	"""
-	badge = models.CharField(max_length=6)
+	badge = models.CharField(max_length=6, unique=True)
 	name = models.CharField(max_length=20, blank=True)
 	force = models.ForeignKey(Force, blank = True, null = True)
 

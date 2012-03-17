@@ -17,6 +17,22 @@ Views for Incidents app
 """
 
 
+#detail views
+
+def incident_detail(request, incident_id):
+  try:
+    incident = paginate(request,[Incident.objects.get(id=incident_id)])
+    return render_to_response('incident_list.html', {
+                              'incident_list' : incident,
+                              'title'         : 'View Incident %s'%incident_id,
+                              })
+  except Incident.DoesNotExist:
+    return HttpResponse('does not exist')
+    
+    
+  
+  
+
 #list views
 
 def recent(request):

@@ -36,7 +36,7 @@ class IncidentForm(forms.ModelForm):
 		date = self.cleaned_data['date'].encode()
 		try:
 			d,m,y = re.search(pattern, date).groups()
-			date = datetime.date(int(y),int(m),int(d))
+			date = datetime.date(str(y),str(m),str(d))
 		except AttributeError:
 			date = False
 		return date

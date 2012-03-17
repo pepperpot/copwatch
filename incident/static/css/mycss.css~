@@ -181,7 +181,6 @@ hr {
 .incident_form .field label {
   float: left;
   clear: left;
-  padding: 5px;
 }
 
 

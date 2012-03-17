@@ -21,7 +21,8 @@
               {{ form.event }}
             </div>
             <div class="grid_4 info omega">
-              <p>Select incident type from drop-down box.</p>
+              <h4>Hey</h4>
+              <p>Ho</p>
             </div>
           </div>
           <div class="grid_8 field alpha omega date">

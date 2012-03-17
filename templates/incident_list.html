@@ -2,19 +2,19 @@
 
 {% block title %} {{title}} {% endblock %}
 
-{% block query_box %}
-{{ query_box }}
+{% block query_header %}
+{{ query_header }}
 {% endblock %}
 
 {% block content %}
 
-<ul class="grid_9 incident_list alpha">
+<ul class="grid_8 incident_list alpha">
 {% for incident in incident_list.object_list %}
-  <div class="grid_7 incident alpha ">
+  <div class="grid_8 incident omega alpha ">
     <div class="grid_2 alpha image">
       <a href="/{{ incident.image }}"><img src="/{{incident.image}}" ></img></a>
     </div>
-    <h3>{{ incident.event }} involving {% for cop in incident.cop.all %} <a href="/incident/cop/{{ cop }}"> {{cop}} </a>,{% endfor %}</h3>
+    <h3>{{ incident.event }} involving {% for cop in incident.cop.all %} <span style="{cursor:pointer;}" onclick="returnQueryBox('{{ cop }}')"> {{cop}} </span>,{% endfor %}</h3>
     <p class="time">{{incident.time}}, {{ incident.date }} <p>
     <hr/>
     <p> {{incident.notes}}</p>

@@ -247,7 +247,7 @@ def usage():
 
 
 def incident_text():
-  grammar = "factory/notes.xml"
+  grammar = "notes.xml"
   k = KantGenerator(grammar)
   k1 = k.refresh().encode()
   return k1

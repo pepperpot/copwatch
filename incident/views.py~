@@ -21,7 +21,7 @@ Views for Incidents app
 
 def incident_detail(request, incident_id):
   try:
-    incident = paginate(request,[Incident.objects.get(id=incident_id)])
+    incident = paginate([Incident.objects.get(id=incident_id)])
     return render_to_response('incident_list.html', {
                               'incident_list' : incident,
                               'title'         : 'View Incident %s'%incident_id,

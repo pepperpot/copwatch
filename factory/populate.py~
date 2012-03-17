@@ -22,7 +22,7 @@ def populate_cops():
   badges = [b.badge.upper() for b in forces]
   
   
-  for n in range(25):
+  for n in range(100):
     force = random.choice(forces)
     n = random.randint(100,999)
     name = random.choice(['jon', 'july', 'jess', 'james', 'jim', 'jeff', 'julia', 'julie']).capitalize()

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE grammar PUBLIC "-//diveintopython.org//DTD Kant Generator Pro v1.0//EN" "kgp.dtd">
+<grammar>
+<ref id='insult-adjective'>
+<p>slimey</p>
+<p>ugly</p>
+<p>nasty</p>
+<p>evil</p>
+</ref>
+
+<ref id='insult-noun'>
+<p>bastard</p>
+<p>pig</p>
+<p>mother-fucker</p>
+</ref>
+
+<ref id='verb'>
+<p>walking</p>
+<p>strolling</p>
+<p>sauntering</p>
+<p>dancing</p>
+</ref>
+
+<ref id='from'>
+<p>a car</p>
+<p>a van</p>
+<p>a takeaway</p>
+<p>a donut shop</p>
+<p>nowhere</p>
+</ref>
+
+<ref id='event'>
+<p>they coshed me</p>
+<p>kicked me to the floor</p>
+<p>insulted me</p>
+<p>threw me in the back of a van</p>
+</ref>
+
+<ref id='insult'>
+<p> It was %(time)s on %(date)s I was in %(location)s, just <xref id='verb'/> down the road when they came from <xref id='from'/> and <xref id='event'/>. %(name)s is a real <xref id='insult-adjective'/> <xref id='insult-noun'/>. I think one of their names was %(name)s.</p>
+</ref>
+
+</grammar>

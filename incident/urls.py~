@@ -2,7 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 import views
 
 urlpatterns = patterns('',
-	url(r'^(\d{1,5})/', views.incident_detail),
+	url(r'^(\d{1,5}', views.incident_detail),
 	url(r'^recent/$', views.recent),
 	url(r'^new/$', views.new),
 	url(r'^search/$', views.search),

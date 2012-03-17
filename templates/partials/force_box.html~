@@ -2,7 +2,7 @@
     <div class="grid_5 push_2 head">
       <h3> {{ force.badge }}</h3>
     </div>
-  <div class="grid_4 graph alpha" cursor="pointer" title="hold cursor over barsfor more info">
+  <div class="grid_4 graph alpha" cursor="pointer">
   {{graph}}
   </div>
     <ul class="grid_3 omega summary">

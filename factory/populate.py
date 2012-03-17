@@ -41,7 +41,7 @@ def populate_incidents():
     cop = random.choice(cops)
     event = random.choice(models.EVENT_TYPE_CHOICES)[1]
     date = datetime.now().date()
-    time = datetime.now().time()
+    time = t = "%s:%s" % (datetime.now().hour, datetime.now().minute)
     location = random.choice(['darlington', 'scarborough', 'mersyside', 'hackney', 'hoxton', 'tottenham', 'manchester'])
     badge = cop.badge
     name = cop.name
@@ -51,11 +51,21 @@ def populate_incidents():
     incident.cop.add(cop)
     print "Created Incident instance '%s'." % incident.time
   print 'Finished populating Incident table.'
+    
   
+def clear(mods = [models.Incident,models.Cop,models.Force]):
+  if mods.__class__ != list:
+    mods = [mods]
+  for m in mods:
+    for i in m.objects.all():
+      i.delete()
+    print 'cleared all instances of "%s"' % m
+
 def main():
+  clear()
   populate_forces()
   populate_cops()
-  populate_incidents()    
+  populate_incidents()
 
 if __name__=='__main__':
   populate_forces()

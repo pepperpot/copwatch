@@ -73,8 +73,13 @@ hr {
 
 .incident .image img {
   display: block;
-  height: 140px;
-  width: 140px;
+  height: 120px;
+  width: 120px;
+  padding: 10px;
+}
+
+.incident .image p {
+	padding: 10px;
 }
 
 .incident h3 {

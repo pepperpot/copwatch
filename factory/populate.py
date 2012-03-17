@@ -30,25 +30,48 @@ def populate_cops():
     c.save()
     print "Created Cop instance '%s'." % c.badge
   print '\n Finished populating Cop table.\n\n'
-  
+
+def populate_images():
+  image_path = '/home/bob/copwatch/media/incident_images/'
+  images = ["incident_images/%s" % img for img in os.listdir(image_path)]
+  for image in images:
+  	caption = 'a bunch of words, just to fill the attribute'
+  	date = datetime.now().date()
+  	i = models.Images(date = date, caption = caption, image = image)
+  	i.save()
+  	print "Added image"
+	
+ 
 def populate_incidents():
   print 'Populating Incident table...'  
   cops = models.Cop.objects.all()
-  image_path = '/home/bob/copwatch/media/incident_images/'
-  images = ["incident_images/%s" % img for img in os.listdir(image_path)]
+  images = models.Images.objects.all()
   for n in range(100):
-    image = random.choice(images)
-    cop = random.choice(cops)
+    image_number = random.randint(0,3)
+    cop_number = random.randint(1,4)
+    image = []
+    for n in range(image_number):
+      i = random.choice(images)
+      if not i in image:
+        image.append(i)  	
+    cop = []
+    for n in range(cop_number):
+      c = random.choice(cops)
+      if not c in cop:
+        cop.append(c)
     event = random.choice(models.EVENT_TYPE_CHOICES)[1]
     date = datetime.now().date()
     time = t = "%s:%s" % (datetime.now().hour, datetime.now().minute)
     location = random.choice(['darlington', 'scarborough', 'mersyside', 'hackney', 'hoxton', 'tottenham', 'manchester'])
-    badge = cop.badge
-    name = cop.name
+    badge = cop[0].badge
+    name = cop[-1].name
     notes = hatemaker.incident_text() % locals()
-    incident = models.Incident(event = event, date = date, time = time, loc = location, notes = notes, image = image)
+    incident = models.Incident(event = event, date = date, time = time, loc = location, notes = notes)
     incident.save()
-    incident.cop.add(cop)
+    for c in cop:
+      incident.cop.add(c)
+    for i in image:
+      incident.image.add(i)
     print "Created Incident instance '%s'." % incident.time
   print 'Finished populating Incident table.'
     

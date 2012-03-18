@@ -51,6 +51,32 @@ hr {
 
 }
 
+/* Incident Detail */
+
+.incident_detail {
+	padding: 0;
+	margin-top: 10px;
+	background-color: #525252;
+}
+
+.incident_text {
+	padding: 5px;
+}
+
+.incident_detail.image {
+	height: 140px;
+	width: 140px;
+	background-color: 590000;
+}
+
+.incident_detail .image img {
+	display: block;
+	height: 120px;
+	width: 120px;
+	padding: 10px;
+}
+	
+
 /* Incident list */
 
 .incident_list {
@@ -62,7 +88,7 @@ hr {
 .incident {
   margin-bottom: 10px;
 
-  height: 180px;
+  height: 210px;
   background-color: #525252;
 }
 
@@ -87,12 +113,12 @@ hr {
   margin-bottom: 2px;
 } 
 
-.incident h3 a {
+.incident a {
   color: #444;
   text-decoration: none;
 }
 
-.incident h3 a:hover {
+.incident a:hover {
   color: black;
 }
 
@@ -115,6 +141,10 @@ hr {
 .footer p {
   margin: 0;
 }
+
+
+/* sidebar */
+
 
 /* Search Bar */
 

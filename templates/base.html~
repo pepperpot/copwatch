@@ -1,0 +1,94 @@
+{% load static %}
+
+<HTML>
+  <HEAD>
+    <link rel="stylesheet" href="{% get_static_prefix %}css/960_12_col.css">
+    <link rel="stylesheet" href="{% get_static_prefix %}css/mycss.css">
+    <script type="text/javascript" src="{% get_static_prefix %}js/jquery-1.2.6.min.js"></script>
+    <script type="text/javascript" src="{% get_static_prefix %}js/notes.js"></script>
+    {% block extra_script %}
+    <script type="text/javascript">
+    function returnQueryBox(badge)
+    {
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+      {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+      }
+    else
+      {//code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+    xmlhttp.onreadystatechange=function()
+      {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+        document.getElementById("side_query_box").innerHTML=xmlhttp.responseText;
+        }
+      }
+    xmlhttp.open("Get", "/incident/copbox" + badge, true);
+    xmlhttp.send();
+    }
+    </script>
+    {% endblock %}
+      <TITLE>
+      CopWatch | {% block title %}{% endblock %}
+      </TITLE>
+  </HEAD>
+
+  <BODY>
+    <div class="container_12">
+      <div class="grid_12 header">
+        <h1> CopWatch </h1>
+      </div>
+      <div class="grid_12 menu">
+        <ul>
+          <li class="grid_3 menu_item alpha"> <a href='/incident/recent' title="View">View Incidents</a></li> 
+          <li class="grid_3 menu_item"> <a href='/about/' title="About">About</a></li>
+          <li class="grid_3 menu_item"> <a href='/incident/new/' title="Publish">Publish</a></li>
+          <li class="grid_3 menu_item omega"> <a href=# title="Contact">Contact</a></li>
+        </ul>
+      </div> 
+      {% block pagination-top %}
+      {% endblock %}
+      <div class="grid_8  content">
+        {% block query_header %}
+	      {% endblock %}
+	      
+	      {%block content %}
+	      {% endblock %}
+	    </div>  
+      <div class="grid_4 sidebar omega">
+      
+      {% block searchbar %}
+        <div class="grid_4 searchbar alpha omega">      
+	        <form class="search" action="/incident/cop" method="get">
+	          <label for="cop_search"> Search Incidents by Badge Number</label>
+		        <input type="text" name="q" id="cop_search">      
+		        <input type="submit" value="Search">
+	        </form>	      	
+	        <form class="search" action="/incident/force" method="get">
+	          <label for="cop_search"> Search Incidents by Police Force</label>
+		        <input type="text" name="q" id="cop_search">      
+		        <input type="submit" value="Search">
+	        </form>	       
+	      </div>
+	      {% endblock %}
+	      
+	      
+	      
+	      <div class="grid_4 side_query_box alpha omega" id="side_query_box">
+	      {% block side_query_box %}
+	      {% endblock %}
+	      </div>
+	      </div>	      
+
+        
+        
+    
+      {% block pagination-bottom %}
+      {% endblock %}
+      <div class="grid_12 footer"><p> thank you for enjoying my website.</p> </div>
+    </div>
+  </BODY>
+</HTML>

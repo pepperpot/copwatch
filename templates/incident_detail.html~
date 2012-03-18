@@ -8,8 +8,8 @@
 		<p class="time">{{incident.time}}, {{ incident.date }} <p>
 		<hr/>
 		<p> {{incident.notes}} </p>
-	</div>	
 		{% for image in incident.image.all %}
+	</div>
 	<div class="grid_2 image">
 		<img src="/{{image.image}}" title="{{image.caption}}"/>
 	</div>

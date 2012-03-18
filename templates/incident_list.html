@@ -24,6 +24,8 @@
     <p class="time">{{incident.time}}, {{ incident.date }} <p>
     <hr/>
     <p> {{incident.notes}}</p>
+    <p><a href="/incident/{{ incident.id}}">More info </a><p>
+    
   </div>
 {% endfor %}
 </ul>

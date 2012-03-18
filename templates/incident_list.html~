@@ -16,12 +16,16 @@
 		    <a href="/{{ incident.image.all.0.image }}">
 		    	<img src="/{{incident.image.all.0.image}}" title="{{incident.image.all.0.caption}}"/>
 		    </a>
+		    {% else %}
+		    	<p> no image available </p>
 		  {%endif%}
     </div>
     <h3>{{ incident.event }} involving {% for cop in incident.cop.all %} <span style="{cursor:pointer;}" onclick="returnQueryBox('{{ cop }}')"> {{cop}} </span>,{% endfor %}</h3>
     <p class="time">{{incident.time}}, {{ incident.date }} <p>
     <hr/>
-    <p> {{incident.notes}}</p>
+    <p> {{incident.notes |truncatewords:"30" }}</p>
+    <p><a href="/incident/{{ incident.id}}">More info </a><p>
+    
   </div>
 {% endfor %}
 </ul>

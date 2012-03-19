@@ -14,5 +14,6 @@ urlpatterns = patterns('',
 	url(r'^copform/([\w\s,]{2,20})/$', views.copform),
 	url(r'^copbox(\w{2,6})/$', views.copbox),
 	url(r'^copsave/([\w\s;]{5,25})$', views.copsave),
+#	url(r'^imageform/',views.imageform),
 
 )

@@ -219,7 +219,22 @@ hr {
   padding: 5px;
 }
 
+.cop_form_outer {
+	background-color: #626262;
+		
+}
 
+.cop_form_inner form {
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.cop_form_inner label {
+	clear: left;
+}
+.cop_form_inner select {
+	width: 140px;
+}
 
 /* Pagination*/
 

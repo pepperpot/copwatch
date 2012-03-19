@@ -10,7 +10,7 @@ class IncidentForm(forms.ModelForm):
 		model = Incident
 		
 	notes = forms.CharField(widget=forms.Textarea(attrs={'cols': 27, 'rows': 6}))
-	cop = forms.CharField(widget=forms.Textarea(attrs={'cols':15, 'rows': 1,'onMouseOut': "returnCopForm(xmlhttp)"}))
+	cop = forms.CharField(widget=forms.Textarea(attrs={'cols':15, 'rows': 1,'onChange': "returnCopForm(xmlhttp)"}))
 	attrs = {'enctype':"multipart/form-data",}
 	date = forms.CharField(max_length=10)
 		
@@ -19,15 +19,15 @@ class IncidentForm(forms.ModelForm):
 		cleaned_cop = []
 		for c in cop:
 			c = c.strip().upper()
-			force = re.search(r'^([\D]{1,3})', c).groups()[0].upper()
-			try:
-				force = Force.objects.get(badge=force)
-			except Force.DoesNotExist: 
-				force = False
-			if force:
-				Cop.objects.get_or_create(badge=c, force=force)
-			else:
-				Cop.objects.get_or_create(badge=c)
+#			force = re.search(r'^([\D]{1,3})', c).groups()[0].upper()
+#			try:
+#				force = Force.objects.get(badge=force)
+#			except Force.DoesNotExist: 
+#				force = False
+#			if force:
+#				Cop.objects.get_or_create(badge=c, force=force)
+#			else:
+#				Cop.objects.get_or_create(badge=c)
 			cleaned_cop.append(Cop.objects.get(badge=c))
 		return cleaned_cop
 

@@ -1,20 +1,25 @@
 
-
-    <div class="grid_7 alpha incident_form">
+    <div class="grid_5 alpha omega cop_form_inner" id="copform_{{badge}}">
       <form action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
-					{% if badge %}
-          <input id="id_badge" type="text" maxlength="6" value="{{badge}}" name="badge">
-          {% else %}
-          {{form.badge}}
-          {% endif %}
-          {{form.force}}
-          {{form.name}}
+					<p> Please fill in details for {{badge}} <p>
+          <label for="id_force_{{badge}}"> Force:</label>
+          <select id="id_force_{{badge}}" name="force" value="{% if force %}{{force.id}}{% endif %} ">
+          		
+          		{% if force %}<option value="{{force.id}}">{{force}}</option>{%endif%}
+          		<option value="">--------</option>
+          	{% for choice in form.fields.force.choices.queryset %}
+          		<option value="{{choice.id}}">{{choice}}</option>
+          	{% endfor %}
+          </select>
+          <label for="id_name_{{badge}}">Name:</input>
+          <input id="id_name_{{badge}}" type="text" maxlength="20" value="{% if cop %}{{cop.name}}{%endif%}" name="name">
           
           <div class="grid_7 input alpha omega">
-            <input type="Button" value="Save" onClick="saveCop(xmlhttp)"/>
+            <input type="Button" value="Save" onClick="saveCop(xmlhttp, '{{badge}}')"/>
           </div>
       </form>
     </div>
+
 
 

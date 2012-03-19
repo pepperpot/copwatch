@@ -7,6 +7,7 @@ from forms import IncidentForm, CopForm, ImagesForm
 from django.template import RequestContext, Context, loader
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import simplejson
+import re
 
 
 """
@@ -95,6 +96,7 @@ def force_list(request, badge_code):
 def new(request):
 	c = {}
 	c.update(csrf(request))
+	c.update({'imagesform': ImagesForm().as_p()})
 	if request.method == 'POST':#if form has been submitted
 		form = IncidentForm(request.POST, request.FILES) # a form bound to the POST data
 		c.update({'form' : form})
@@ -120,23 +122,14 @@ def update_cop(request, badge):
   	cop = Cop.objects.get(badge=badge)
   except Cop.DoesNotExist:
   	cop = False
-  if request.method == 'POST':
-    form = CopForm(request.POST)
-    c.update({'form': form})
-    if not cop:
-      if form.is_valid():
-        c = form.save()
-        return 'cop %s saved'% badge
-    elif cop and not form['name'].value() == cop.name:      
-        cop.name = form['name'].value()
-        cop.save()    
-        return 'cop %s saved'% badge
+  if cop:
+    form = CopForm(instance=cop)
   else:
-    if cop:
-      form = CopForm(instance=cop)
-    else:
-      form = CopForm()
-    c.update({'form': form, 'badge': badge})
+    form = CopForm()
+  force = re.search(r'^([\D]{1,3})', badge).groups()[0].upper()
+  if force:
+  	force = Force.objects.get(badge=force)
+  c.update({'form': form, 'badge': badge, 'cop': cop, 'force': force})
   c = Context(c)
   return t.render(c)
   
@@ -149,15 +142,26 @@ def copform(request,cop_string):
 
 def copsave(request, copstring):
 	badge, force, name = copstring.split(';')
-	cop = Cop(badge = badge, name = name, force = force)
+	force = Force.objects.get(id=force)
+	badge = badge.upper()
+	cop, new = Cop.objects.get_or_create(badge=badge)
+	cop.name = name
+	cop.force = force
 	cop.save()
-	return HttpResponse('Name: %s, Badge: %s, Force: %s CREATED'%(name, badge, force))
+	return HttpResponse('Name: %s, Badge: %s, Force: %s CREATED'%(cop.name, cop.badge, cop.force))
 
-#def imagesform(request):
+def imagesform_ajax(request):
 #	c = {}
 #	c.update(csrf(request))
 #	if request.method == 'POST':
-#	form = ImageForm()
+	form = ImagesForm().as_p()
+	return HttpResponse(form)
+
+def imageform(request):
+	c = {}
+	c.update(csrf(request))
+	if request.method == 'POST':
+		form = ImageForm(request.POST
 # search views
 
 def search(request):

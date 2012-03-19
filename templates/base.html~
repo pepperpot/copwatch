@@ -32,20 +32,19 @@
     xmlhttp.send();	
     }
     
-    function saveCop(xmlhttp) {
-    var badge=document.getElementById('id_badge').value;
-    var force=document.getElementById('id_force').value;
-    var name=document.getElementById('id_name').value;
+    function saveCop(xmlhttp, badge) {
+    var force=document.getElementById('id_force_'+ badge).value;
+    var name=document.getElementById('id_name_'+badge).value;
     var copAttributes = escape(badge) + ';'+escape(force) + ';'+ escape(name);
        
     xmlhttp.onreadystatechange=function() {
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     		{
-    		document.getElementById("copsave_test").innerHTML=xmlhttp.responseText;
+    		document.getElementById("copform_"+badge).innerHTML=xmlhttp.responseText;
     		}
     	}
 
-    xmlhttp.open("get", "/incident/copsave?"+copAttributes, true);
+    xmlhttp.open("get", "/incident/copsave/"+copAttributes, true);
     xmlhttp.send()
     }
     function returnQueryBox(badge,xmlhttp)
@@ -61,6 +60,10 @@
     xmlhttp.open("Get", "/incident/copbox" + badge, true);
     xmlhttp.send();
     }
+    
+    function addImages() {
+    	document.getElementById('image_test').style.display = 'block';
+    	}
     </script>
     {% endblock %}
       <TITLE>

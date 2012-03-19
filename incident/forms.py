@@ -10,7 +10,7 @@ class IncidentForm(forms.ModelForm):
 		model = Incident
 		
 	notes = forms.CharField(widget=forms.Textarea(attrs={'cols': 27, 'rows': 6}))
-	cop = forms.CharField(max_length=30)
+	cop = forms.CharField(widget=forms.Textarea(attrs={'cols':15, 'rows': 1,'onMouseOut': "returnCopForm(xmlhttp)"}))
 	attrs = {'enctype':"multipart/form-data",}
 	date = forms.CharField(max_length=10)
 		
@@ -46,3 +46,7 @@ class IncidentForm(forms.ModelForm):
 class CopForm(forms.ModelForm):
 	class Meta:
 		model = Cop
+		
+class ImagesForm(forms.ModelForm):
+	class Meta:
+		model = Images

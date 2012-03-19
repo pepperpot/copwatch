@@ -3,7 +3,7 @@ from django.core.context_processors import csrf
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from models import Incident, Cop, Force
-from forms import IncidentForm, CopForm
+from forms import IncidentForm, CopForm, ImagesForm
 from django.template import RequestContext, Context, loader
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import simplejson
@@ -103,33 +103,62 @@ def new(request):
 			if request.FILES:
 				i.image = request.FILES['image']
 				i.save()
-			return HttpResponseRedirect('/incident/editcop_%s'% i.cop.all()[0]) # redirect after POST
+#			return HttpResponseRedirect('/incident/editcop_%s'% i.cop.all()[0]) # redirect after POST
+			return HttpResponseRedirect('/incident/%s'%i.id)	
 	else:
 		form = IncidentForm() # an unbound form
-		c.update({'form': form})
+		c.update({'form': form, 'ImagesForm': ImagesForm()})
 	return render_to_response('new.html', c,
 		 context_instance=RequestContext(request))
 
 def update_cop(request, badge):
   c = {}
+  t = loader.get_template('editCop.html')
   c.update(csrf(request))
   c.update({'name': badge})
-  cop = Cop.objects.get(badge=badge)
+  try:
+  	cop = Cop.objects.get(badge=badge)
+  except Cop.DoesNotExist:
+  	cop = False
   if request.method == 'POST':
     form = CopForm(request.POST)
     c.update({'form': form})
-    if not form['name'].value() == cop.name:      
-      cop.name = form['name'].value()
-      cop.save()
-      return HttpResponseRedirect('/incident/cop/%s'% badge)
+    if not cop:
+      if form.is_valid():
+        c = form.save()
+        return 'cop %s saved'% badge
+    elif cop and not form['name'].value() == cop.name:      
+        cop.name = form['name'].value()
+        cop.save()    
+        return 'cop %s saved'% badge
   else:
-    
-    form = CopForm(instance=cop)
-    c.update({'form': form})
-  return render_to_response('editCop.html', c,
-          context_instance=RequestContext(request))
+    if cop:
+      form = CopForm(instance=cop)
+    else:
+      form = CopForm()
+    c.update({'form': form, 'badge': badge})
+  c = Context(c)
+  return t.render(c)
   
-  
+def copform(request,cop_string):
+	cop_list = [cop.strip() for cop in cop_string.encode().split(',')]
+	response = '' 
+	for cop in cop_list:
+		response += update_cop(request, cop)
+	return HttpResponse(response)
+
+def copsave(request, copstring):
+	badge, force, name = copstring.split(';')
+	force = Force.objects.get(id=force)
+	cop = Cop(badge = badge, name = name, force = force)
+	cop.save()
+	return HttpResponse('Name: %s, Badge: %s, Force: %s CREATED'%(name, badge, force))
+
+#def imagesform(request):
+#	c = {}
+#	c.update(csrf(request))
+#	if request.method == 'POST':
+#	form = ImageForm()
 # search views
 
 def search(request):

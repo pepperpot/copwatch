@@ -4,12 +4,12 @@
 {% block content %}
 <div class="grid_8 incident_detail alpha omega">
 	<div class="incident_text alpha omega">
-		<h3> {{ incident.event }} involving {% for cop in incident.cop.all %} <span style="{cursor:pointer;}" onclick="returnQueryBox('{{ cop }}')"> {{cop}} </span>,{% endfor %}</h3>
+		<h3> {{ incident.event }} involving {% for cop in incident.cop.all %} <span style="{cursor:pointer;}" onclick="returnQueryBox('{{ cop }}', xmlhttp)"> {{cop}} </span>,{% endfor %}</h3>
 		<p class="time">{{incident.time}}, {{ incident.date }} <p>
 		<hr/>
 		<p> {{incident.notes}} </p>
+	</div>	
 		{% for image in incident.image.all %}
-	</div>
 	<div class="grid_2 image">
 		<img src="/{{image.image}}" title="{{image.caption}}"/>
 	</div>

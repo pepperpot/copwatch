@@ -11,6 +11,8 @@ urlpatterns = patterns('',
 	url(r'^force/$', views.force_search),
 	url(r'^force/(\D{1,3})/$', views.force_list),
 	url(r'^editcop_(\w{2,6})/$', views.update_cop),
+	url(r'^copform/([\w\s,]{2,20})/$', views.copform),
 	url(r'^copbox(\w{2,6})/$', views.copbox),
+	url(r'^copsave/([\w\s;]{5,25})$', views.copsave),
 
 )

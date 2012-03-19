@@ -58,7 +58,7 @@ class Images(models.Model):
 	
 	date = models.DateField()
 	image = models.ImageField(upload_to = 'incident_images/')
-	caption = momdels.CharField(max_length='200', null=True, blank=True)
+	caption = models.CharField(max_length='200', null=True, blank=True)
 	
 	def __unicode__(self):
 		return self.caption[:80]

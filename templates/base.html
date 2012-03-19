@@ -8,8 +8,6 @@
     <script type="text/javascript" src="{% get_static_prefix %}js/notes.js"></script>
     {% block extra_script %}
     <script type="text/javascript">
-    function returnQueryBox(badge)
-    {
     var xmlhttp;
     if (window.XMLHttpRequest)
       {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -19,13 +17,47 @@
       {//code for IE6, IE5
       xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
       }
+
+    function returnCopForm(xmlhttp)
+    {
+    var cop_string = document.getElementById("id_cop").value;
+    xmlhttp.onreadystatechange=function()
+    	{
+    	if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    		{
+    		document.getElementById("copform").innerHTML=xmlhttp.responseText;
+    		}
+    	}
+    xmlhttp.open("Get", "/incident/copform/"+cop_string, true);
+    xmlhttp.send();	
+    }
+    
+    function saveCop(xmlhttp) {
+    var badge=document.getElementById('id_badge').value;
+    var force=document.getElementById('id_force').value;
+    var name=document.getElementById('id_name').value;
+    var copAttributes = escape(badge) + ';'+escape(force) + ';'+ escape(name);
+       
+    xmlhttp.onreadystatechange=function() {
+    	if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    		{
+    		document.getElementById("copsave_test").innerHTML=xmlhttp.responseText;
+    		}
+    	}
+
+    xmlhttp.open("get", "/incident/copsave/"+copAttributes, true);
+    xmlhttp.send()
+    }
+    function returnQueryBox(badge,xmlhttp)
+    {
     xmlhttp.onreadystatechange=function()
       {
       if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
         document.getElementById("side_query_box").innerHTML=xmlhttp.responseText;
         }
-      }
+      }    
+    
     xmlhttp.open("Get", "/incident/copbox" + badge, true);
     xmlhttp.send();
     }

@@ -12,7 +12,7 @@
           {{form.name}}
           
           <div class="grid_7 input alpha omega">
-            <input type="Button" value="Save" onClick="saveCop(xmlhttp)"/>
+            <input type="Button" value="Save" onClick="saveCop()"/>
           </div>
       </form>
     </div>

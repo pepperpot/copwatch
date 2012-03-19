@@ -101,6 +101,10 @@
               <p>Enter badge numbers of police officers, seperated by commas (ie. 'GD102, GD104)</p>
             </div>
           </div>
+          <div id="copform" class="copform">
+          </div>
+          <div id="copsave_test">
+          </div>
           <div class="grid_8 field alpha omega">
             
             {% if form.image.errors %}
@@ -109,16 +113,17 @@
                 </div>
             {% endif %}
             <div class="grid_4 alpha box">
-              <label for="id_image">Image:</label>
-              {{ form.image }}
+             <input type="button" name="add images?" id="add_images" >
             </div>
             <div class="grid_4 info omega">
               
               <p>Add images relating to the incident. Please block out faces and identifiable features of anyone not working for the police or associated bodies.</p>
             </div>
+            <div id="image_test">
+            </div>
           </div>
           <div class="grid_8 input alpha omega">
-            <input type="submit" value="Submit"/>
+            <input type="submit" value="Submit" />
           </div>
         </form>
       </div>

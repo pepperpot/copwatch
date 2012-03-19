@@ -20,7 +20,7 @@
 		    	<p> no image available </p>
 		  {%endif%}
     </div>
-    <h3>{{ incident.event }} involving {% for cop in incident.cop.all %} <span style="{cursor:pointer;}" onclick="returnQueryBox('{{ cop }}')"> {{cop}} </span>,{% endfor %}</h3>
+    <h3>{{ incident.event }} involving {% for cop in incident.cop.all %} <span style="{cursor:pointer;}" onclick="returnQueryBox('{{ cop }}',xmlhttp)"> {{cop}} </span>,{% endfor %}</h3>
     <p class="time">{{incident.time}}, {{ incident.date }} <p>
     <hr/>
     <p> {{incident.notes}}</p>

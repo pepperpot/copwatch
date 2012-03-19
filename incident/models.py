@@ -83,7 +83,7 @@ class Incident(models.Model):
 	loc = models.CharField('location', max_length=100) 
 	notes = models.CharField(max_length=2000)
 	cop = models.ManyToManyField(Cop)
-	image = models.ManyToManyField(Images)
+	image = models.ManyToManyField(Images, blank=True, null=True)
 
 	def __unicode__(self):
 		return self.notes[:10]

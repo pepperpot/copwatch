@@ -164,7 +164,7 @@ def update_cop(request, badge):
   c = Context(c)
   return t.render(c)
   
-
+#search
 	
 def cop_search(request):
 	return search(request, Cop)	

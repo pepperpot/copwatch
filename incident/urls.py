@@ -1,6 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
 import views
-import testviews
 
 urlpatterns = patterns('',
 	url(r'^(\d{1,5})/', views.incident_detail),

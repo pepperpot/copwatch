@@ -17,6 +17,6 @@ urlpatterns = patterns('',
 #	url(r'^copsave/([\w\s;]{5,25})$', views.copsave),
 #	url(r'^imageform/',views.imageform),
 #	url(r'^copformset/([\w\s,]{3,20})/$',views.cop_formset),
-	url(r'^test_new/$', testviews.new),
+#	url(r'^test_new/$', testviews.new),
 
 )

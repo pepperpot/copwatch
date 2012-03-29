@@ -1,3 +1,15 @@
 online framework for reporting and publishing incidents of police misconduct
 
 developed using Django
+
+
+TODO
+- write docs for all functions
+- Write tests
+- Add Cop-profile view
+	-add 'bio' attribute to Cop model
+		- 'wiki' style?
+- Make photo faceblocker
+- Make more beautiful
+- Extend search optins ('advances search' box?)
+

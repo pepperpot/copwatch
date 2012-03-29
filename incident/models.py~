@@ -56,7 +56,7 @@ class Images(models.Model):
 	
 	"""
 	
-	date = models.DateField()
+	date = models.DateField(null=True, blank=True)
 	image = models.ImageField(upload_to = 'incident_images/')
 	caption = models.CharField(max_length='200', null=True, blank=True)
 	
@@ -83,7 +83,7 @@ class Incident(models.Model):
 	loc = models.CharField('location', max_length=100) 
 	notes = models.CharField(max_length=2000)
 	cop = models.ManyToManyField(Cop)
-	image = models.ManyToManyField(Images)
+	image = models.ManyToManyField(Images, blank=True, null=True)
 
 	def __unicode__(self):
 		return self.notes[:10]

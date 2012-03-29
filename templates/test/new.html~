@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="grid_8 alpha incident_form">
+<form action="" method="post" enctype="multipart/form-data">
+{% csrf_token%}
+    <div class="grid_8 alpha incident_form">
+      
+          <div class="grid_8 field alpha omega event">
+            {% if incident_form.event.errors %}
+                <div class="grid_6 alpha errorbox">
+                  {{incident_form.event.errors}}
+                </div>
+            {% endif %}
+            <div class="grid_4 alpha box">
+              <label for="id_event">Type of Incident:</label>
+              {{ incident_form.event }}
+            </div>
+            <div class="grid_4 info omega">
+              <p>Select incident type from drop-down box.</p>
+            </div>
+          </div>
+          <div class="grid_8 field alpha omega date">
+            {% if incident_form.date.errors %}
+                <div class="grid_6 alpha errorbox">
+                  {{incident_form.date.errors}}
+                </div>
+            {% endif %}
+            <div class="grid_4 alpha box">
+              <label for="id_date">Date of incident:</label>
+              {{ incident_form.date }}
+            </div>
+            <div class="grid_4 info omega">
+              
+              <p>Insert date in format DD/MM/YYYY</p>
+              <input type="radio" onClick="today()" name="date" CHECKED> <p> Today </p>
+              <input type="radio" onClick="yesterday()" name="date"> <p> Yesterday </p>
+            </div>
+          </div>
+          <div class="grid_8 field alpha omega time">
+            {% if incident_form.time.errors %}
+                <div class="grid_6 alpha errorbox">
+                  {{incident_form.time.errors}}
+                </div>
+            {% endif %}
+            <div class="grid_4 alpha box">
+              <label for="id_time">Time of Incident:</label>
+              {{ incident_form.time }}
+            </div>
+            <div class="grid_4 info omega">
+              
+              <p>Input the time at which the incident started </p>
+            </div>
+          </div>
+          <div class="grid_8 field alpha omega loc">
+            {% if incident_form.loc.errors %}
+                <div class="grid_6 alpha errorbox">
+                  {{incident_form.loc.errors}}
+                </div>
+            {% endif %}
+            <div class="grid_4 alpha box">
+              <label for="id_loc">Location:</label>
+              {{ incident_form.loc }}
+            </div>
+            <div class="grid_4 info omega">
+              
+              <p>Input location of incident</p>
+            </div>
+          </div>
+          <div class="grid_8 field alpha omega notes">
+            {% if incident_form.notes.errors %}
+                <div class="grid_6 alpha errorbox">
+                  {{incident_form.notes.errors}}
+                </div>
+            {% endif %}
+            <div class="grid_4 alpha box">
+              
+              <label for="id_notes">Notes:</label>
+              {{ incident_form.notes }}
+            </div>
+            <div class="grid_4 info omega">
+              
+              <p>Write a summary of the incident. Be as specific as possible. (but please, no names or information which could identify anybody involved who was not a memebr of the police force!)</p>
+            </div>
+          </div>
+					<div class="grid_8 field alpha omega cop_string">
+						<div class="grid_4 alpha box">
+							<textarea name="incident-cop_string" cols="15" onchange="returnCopForm(xmlhttp)" rows="1" id="id_cop_string"></textarea>
+						</div>
+						<div class="grid_4 info omega">
+							<p> Enter badge numbers of involved police officers, seperated by a comma (ie. 'GD102, GD103'</p>
+						</div>
+						
+					</div>
+					<hr/>
+				<div class="grid_8 field alpha omega cop_form" id="cop_form" >
+					{{cop_form.as_table}}
+					<hr/>
+				</div>
+
+
+				<div class="grid_8 image_form" id="image_form" >
+					{{image_form.management_form}}
+					<table>
+						{% for form in image_form %}
+							<div class="grid_5 image_form_{{forloop.counter}} alpha omega field" id="image_form_{{forloop.counter}}">
+								{{ form.as_p }}
+							</div>
+						{% endfor %}
+					</table>
+				</div>
+				<div class="grid_5 add_image" id="add_image">
+					<input type="button" onClick="add_images(n)" value="add images" id="image_button"/>
+					<hr/>
+				</div>
+				<div class="submit grid_5">
+					<input type="submit" value="submit"/>
+				</div>
+			</form>
+		</div>
+{% endblock %}

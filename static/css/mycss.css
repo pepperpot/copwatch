@@ -1,0 +1,325 @@
+body {
+  background-color: white;
+}
+
+/* Header */
+
+hr {
+  color: black;
+  background-color: black;
+  border: none;
+}
+.header {
+  display: block;
+
+  background-color: black;
+  color: white;
+  height: 100px;
+}
+
+.header h1 {
+  display: block;
+  margin-top: 60px;
+  height: 40px;
+}
+
+
+
+/* Menu */
+
+.menu {
+  background-color: black;
+  margin-top: 10px;
+}
+.menu ul {
+  padding: 0;
+  list-style: none;
+}
+
+.menu ul a {
+  height: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu ul a:hover {
+  color: #525252;
+}
+
+.content {
+
+}
+
+/* Incident Detail */
+
+.incident_detail {
+	padding: 0;
+	margin-top: 10px;
+	background-color: #525252;
+}
+
+.incident_text {
+	padding: 5px;
+}
+
+.incident_detail.image {
+	height: 140px;
+	width: 140px;
+	background-color: 590000;
+}
+
+.incident_detail .image img {
+	display: block;
+	height: 120px;
+	width: 120px;
+	padding: 10px;
+}
+	
+
+/* Incident list */
+
+.incident_list {
+  padding: 0;
+  list-style: none;
+  margin-top: 10px;
+}
+
+.incident {
+  margin-bottom: 10px;
+
+  height: 210px;
+  background-color: #525252;
+}
+
+.incident .image {
+  height: 140px;
+  background-color: #590000;
+}
+
+.incident .image img {
+  display: block;
+  height: 120px;
+  width: 120px;
+  padding: 10px;
+}
+
+.incident .image p {
+	padding: 10px;
+}
+
+.incident h3 {
+  font-size: 14px;
+  margin-bottom: 2px;
+} 
+
+.incident a {
+  color: #444;
+  text-decoration: none;
+}
+
+.incident a:hover {
+  color: black;
+}
+
+.incident .time {
+  font-size: 12px;
+  
+}
+
+
+/* Footer */
+
+.footer {
+  font-size: 12px;
+  color: white;
+  display: block;
+  margin-top: 10px;
+  background-color: #525252;
+  height: 20px;
+}
+.footer p {
+  margin: 0;
+}
+
+
+/* sidebar */
+
+
+/* Search Bar */
+
+.searchbar {
+  float: right;
+  background-color: #525252;
+  margin-top: 10px;
+}
+
+.search {
+  float: right;
+  margin: 10px;
+}
+
+
+
+/* Incident Form */
+
+.incident_form, 
+{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.incident_form .box {
+  background: grey;
+  height:80px;
+  padding-top: 10px;
+}
+
+.incident_form .info {
+  background-color: black;
+  color: white;
+  height: 90px;
+}
+
+.incident_form .info h4,
+.incident_form .info p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 12px;
+}
+
+.incident_form .field {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.incident_form .field.notes .box{
+  height: 150px;
+  }
+  
+.incident_form .field.notes .info{
+  height: 150px;
+  }
+
+.incident_form .errorbox {
+  display: block;
+  height: auto;
+  background-color: #eed;
+  color: black;
+  font-style: italic;
+  margin-bottom: 5px;
+}
+.incident_form .field input,
+.incident_form .field label {
+  float: left;
+  clear: left;
+  padding: 5px;
+}
+
+.cop_form_outer {
+	background-color: #626262;
+		
+}
+
+.cop_form_inner form {
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.cop_form_inner label {
+	clear: left;
+}
+.cop_form_inner select {
+	width: 140px;
+}
+
+/* Pagination*/
+
+.pagination {
+  margin-top: 10px;
+  font-size: 11px;
+  color: white;
+  background-color: black;
+  text-align: center;
+}
+
+.pagination span {
+  margin-left: auto;
+  margin-right: auto;
+}
+.pagination a {
+  text-decoration: none;
+  color: white;
+}
+
+.pagination a:hover {
+  color: #525252;
+}
+.side_bar {
+  float: right;
+}
+
+
+/* query_box */
+
+.query_header {
+  margin-top: 10px;
+  background-color: #525252;
+}
+
+.query_header .head {
+  text-align: center;
+}
+
+.query_header .head h3 {
+  font-size: 14px;
+}
+.query_header .head p {
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+
+.query_header a {
+  text-decoration: none;
+  color: #222;
+}
+
+.query_header a:hover {
+  color: black;
+}
+
+.query_header ul {
+  list-style: none;
+  background-color: #888;
+}
+
+.query_header ul li{
+  background-color: #666;
+  margin-top: 5px;
+} 
+
+.query_header ul li .key{
+  
+}
+
+/* query_box*/
+
+.side_query_box {
+  float: right;
+  background-color: #525252;
+  margin-top: 10px;
+}
+
+.graph {
+  background-color: #626262;
+  padding: 10px;
+  float: center;
+}
+
+.graph svg {
+  display: block;
+  height: auto;
+}

@@ -8,29 +8,15 @@ class IncidentForm(forms.ModelForm):
 
 	class Meta:
 		model = Incident
+		exclude = ('cop', 'image')
 		
 	notes = forms.CharField(widget=forms.Textarea(attrs={'cols': 27, 'rows': 6}))
-	cop = forms.CharField(widget=forms.Textarea(attrs={'cols':15, 'rows': 1,'onChange': "returnCopForm(xmlhttp)"}))
 	attrs = {'enctype':"multipart/form-data",}
-	date = forms.CharField(max_length=10)
+	date = forms.CharField(max_length=10, initial=datetime.date.today().strftime('%d/%m/%Y'))
 		
-	def clean_cop(self):
-		cop = self.cleaned_data['cop'].split(',')
-		cleaned_cop = []
-		for c in cop:
-			c = c.strip().upper()
-#			force = re.search(r'^([\D]{1,3})', c).groups()[0].upper()
-#			try:
-#				force = Force.objects.get(badge=force)
-#			except Force.DoesNotExist: 
-#				force = False
-#			if force:
-#				Cop.objects.get_or_create(badge=c, force=force)
-#			else:
-#				Cop.objects.get_or_create(badge=c)
-			cleaned_cop.append(Cop.objects.get(badge=c))
-		return cleaned_cop
 
+			
+			
 	def clean_date(self):
 		pattern = r'([\d]{1,2})[-|/]([\d]{1,2})[-|/]([\d]{4})'
 		date = self.cleaned_data['date'].encode()
@@ -50,3 +36,4 @@ class CopForm(forms.ModelForm):
 class ImagesForm(forms.ModelForm):
 	class Meta:
 		model = Images
+		exclude = ('date')

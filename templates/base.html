@@ -17,20 +17,22 @@
       {//code for IE6, IE5
       xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
       }
-
+		var n = 1;
     function returnCopForm(xmlhttp)
     {
-    var cop_string = document.getElementById("id_cop").value;
+    var cop_string = document.getElementById("id_cop_string").value;
     xmlhttp.onreadystatechange=function()
     	{
     	if (xmlhttp.readyState==4 && xmlhttp.status==200)
     		{
-    		document.getElementById("copform").innerHTML=xmlhttp.responseText;
+    		document.getElementById("cop_form").innerHTML=xmlhttp.responseText;
+    		document.getElementById("cop_form").style.display = "block";
     		}
     	}
     xmlhttp.open("Get", "/incident/copform/"+cop_string, true);
     xmlhttp.send();	
     }
+    
     
     function saveCop(xmlhttp, badge) {
     var force=document.getElementById('id_force_'+ badge).value;
@@ -64,6 +66,40 @@
     function addImages() {
     	document.getElementById('sidebar').style.display = 'block';
     	}
+    function hide_forms(n)	{
+    	document.getElementById('cop_form').style.display = 'none';
+    	for (n=1;n<=4;n++)
+    	{
+    	document.getElementById('image_form_'+n).style.display = 'none';
+    	}
+    	}
+    	
+    function add_images(n) {
+    	if (n == 1) {
+    		document.getElementById('image_button').value = 'Add More Images'
+    		}
+    	document.getElementById('image_form').style.display = 'inline';
+    	document.getElementById('image_form_'+ n).style.display = 'inline';
+    	window.n = n +1;
+    }
+    function yesterday(){
+    	var date = new Date;
+    	var day = date.getDate()-1;
+    	var month = date.getMonth()+1;
+    	var year = date.getFullYear();
+    	var yesterday = day + '/' + month + '/' + year;
+    	document.getElementById('id_incident-date').value = yesterday; 
+    }
+    function today(){
+			var date = new Date;
+    	var day = date.getDate();
+    	var month = date.getMonth()+1;
+    	var year = date.getFullYear();
+    	var today = day + '/' + month + '/' + year;
+    	document.getElementById('id_incident-date').value = today; 
+    }
+    window.onload = hide_forms;
+    
     </script>
     {% endblock %}
       <TITLE>
@@ -93,6 +129,7 @@
 	      {%block content %}
 	      {% endblock %}
 	    </div>  
+	    
       <div class="grid_4 sidebar omega">
       
       {% block searchbar %}

@@ -1,0 +1,11 @@
+{{copformset.management_form}}
+<div class="existing_cop_list grid_4 alpha">
+	{% for cop in cop_exists %}
+		<p>Badge: {{cop.badge}} Name: {% if cop.name %}{{ cop.name }}{% else %}unknown{% endif %} </p>
+	{% endfor %}
+
+<table>
+	{% for form in copformset %}
+		{{ form }}
+	{% endfor %}
+</table>

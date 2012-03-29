@@ -9,7 +9,7 @@ def populate_forces():
   t = open('incident/static/badge_numbers', 'r')
   lines = t.readlines()
   t.close()
-  for l in lines[:10]:
+  for l in lines:
     badge, name = l.split(':')
     f = models.Force(badge=badge.upper(), name=name.strip('\n'))
     f.save()
@@ -18,7 +18,7 @@ def populate_forces():
 
 def populate_cops():
   print 'Populating Cop table.' 
-  forces = models.Force.objects.all()
+  forces = models.Force.objects.all()[1:11]
   badges = [b.badge.upper() for b in forces]
   
   
@@ -36,8 +36,7 @@ def populate_images():
   images = ["incident_images/%s" % img for img in os.listdir(image_path)]
   for image in images:
   	caption = 'a bunch of words, just to fill the attribute'
-  	date = datetime.now().date()
-  	i = models.Images(date = date, caption = caption, image = image)
+  	i = models.Images( caption = caption, image = image)
   	i.save()
   	print "Added image"
 	
@@ -76,7 +75,7 @@ def populate_incidents():
   print 'Finished populating Incident table.'
     
   
-def clear(mods = [models.Incident,models.Cop,models.Force]):
+def clear(mods = [models.Incident,models.Cop,models.Force, models.Images]):
   if mods.__class__ != list:
     mods = [mods]
   for m in mods:
@@ -86,6 +85,7 @@ def clear(mods = [models.Incident,models.Cop,models.Force]):
 
 def main():
   clear()
+  populate_images()
   populate_forces()
   populate_cops()
   populate_incidents()

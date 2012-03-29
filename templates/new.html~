@@ -7,7 +7,7 @@
             Please correct the error{{ form.errors|pluralize }} below.
         </p>
     {% endif %}
-    <div class="grid_8 alpha incident_form">
+    <div class="grid_8 alpha omega incident_form">
       <form action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <div class="grid_8 field alpha omega event">
@@ -101,7 +101,7 @@
               <p>Enter badge numbers of police officers, seperated by commas (ie. 'GD102, GD104)</p>
             </div>
           </div>
-          <div id="copform" class="cop_form_outer grid_3 alpha">
+          <div id="copform" class="cop_form_outer grid_4 alpha">
           </div>
           <div class="grid_8 field alpha omega">
             
@@ -126,4 +126,5 @@
           </div>
         </form>
       </div>
+    </div>
 {% endblock %}

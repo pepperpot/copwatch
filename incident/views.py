@@ -7,6 +7,7 @@ from forms import IncidentForm, CopForm, ImagesForm
 from django.template import RequestContext, Context, loader
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import simplejson
+from django.forms.models import modelformset_factory
 import re
 
 
@@ -113,6 +114,13 @@ def new(request):
 	return render_to_response('new.html', c,
 		 context_instance=RequestContext(request))
 
+def cop_formset(request, coplist):
+	coplist = [cop.strip() for cop in coplist.split(',')]
+	cop_number = len(coplist)
+	form = modelformset_factory(CopForm, extra=cop_number)
+	form = form(initial = [{'badge': badge} for badge in coplist])
+	return HttpResponse(form.as_table())
+
 def update_cop(request, badge):
   c = {}
   t = loader.get_template('editCop.html')
@@ -157,13 +165,25 @@ def imagesform_ajax(request):
 	form = ImagesForm().as_p()
 	return HttpResponse(form)
 
-#def imageform(request):
-#	c = {}
-#	c.update(csrf(request))
-#	if request.method == 'POST':
-#		form = ImageForm(request.POST
-# search views
-
+def imageform(request):
+	c = {}
+	c.update(csrf(request))
+	c.update({'imageform': ImagesForm().as_p()})
+	if request.method == 'POST':#if form has been submitted
+		form = ImagesForm(request.POST, request.FILES) # a form bound to the POST data
+		c.update({'imageform' : form})
+		if form.is_valid(): #All validation rules pass
+			i = form.save()
+			if request.FILES:
+				i.image = request.FILES['image']
+				i.save()
+#			return HttpResponseRedirect('/incident/editcop_%s'% i.cop.all()[0]) # redirect after POST
+			return HttpResponseRedirect('/incident/recent')	
+	else:
+		form = ImagesForm() # an unbound form
+		c.update({'imageform': form,})
+	return render_to_response('partials/imageform.html', c,
+		 context_instance=RequestContext(request))
 def search(request):
 	return HttpResponse('search')
 	

@@ -56,7 +56,6 @@ class Images(models.Model):
 	
 	"""
 	
-	date = models.DateField()
 	image = models.ImageField(upload_to = 'incident_images/')
 	caption = models.CharField(max_length='200', null=True, blank=True)
 	

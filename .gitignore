@@ -1,4 +1,6 @@
 *.pyc
 database.db
-static/incident_images/*
+media/
+
+
 

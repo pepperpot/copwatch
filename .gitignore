@@ -1,6 +1,7 @@
 *.pyc
 database.db
-media/
+*.jpg
+*.jpeg
 
 
 

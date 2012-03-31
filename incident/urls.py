@@ -2,7 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 import views
 
 urlpatterns = patterns('',
-	url(r'^(\d{1,5})/', views.incident_detail),
+	url(r'^(\d{1,5})/$', views.incident_detail),
 	url(r'^recent/$', views.recent),
 	url(r'^new/$', views.new),
 	url(r'^search/$', views.search),
@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 	url(r'^editcop_(\w{2,6})/$', views.update_cop),
 	url(r'^copform/([\w\s,]{2,20})/$', views.copform),
 	url(r'^copbox(\w{2,6})/$', views.copbox),
+	url(r'^image_anonymiser/(\d{1,5})/$', views.image_anonymiser),
 
 
 )

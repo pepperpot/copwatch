@@ -9,6 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils import simplejson
 from django.forms.models import modelformset_factory
 import re
+import Image, ImageDraw
 
 
 """
@@ -275,4 +276,33 @@ def incidents_data(model, instance):
 		else: 
 			events[i.event] += 1
 	return (events, incidents)
+	
+	
+#image
+
+def image_anonymiser(request, image_id):
+	c = {}
+	c.update(csrf(request))
+	image = Images.objects.get(id=image_id)
+	c.update({'image':image})
+	if request.method == 'POST':
+		data = request.POST['coordinates'].encode()
+		data = process_image(image, data)
+		return HttpResponseRedirect('/%s' % image.image.name)
+	else:
+		return render_to_response('image_anonymiser.html', c)
+		
+def process_image(image, data):
+	data = [(float(cx), float(cy), float(rx), float(ry)) for cx,cy,rx,ry in [c.split(',') for c in data[:-1].split(';')]]
+	im = Image.open(image.image.path)
+	if im.mode != 'RGB':
+		im = im.convert('RGB')
+	draw = ImageDraw.Draw(im)
+	ratio = image.image.width / float(600)
+	for mask in data:
+		cx, cy, rx, ry = mask
+		maskEllipseBox = (ratio*(cx-rx), ratio*(cy-ry), ratio*(cx+rx), ratio*(cy+ry))
+		draw.ellipse(maskEllipseBox, fill=(0,0,0))
+	im.save(image.image.path)
+	return data
 

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="alpha omega grid_8" style="height:600px;border:1px solid black;margin-top:5px;">
+<div id="div1" style="position:relative;" class="grid_7 alpha image_editor">
+	<img id="image" src="/{{image.image}}" title="{{image.caption}}" 
+	style="position:absolute;top:0px;left:0px;width:600px;"/>
+ <svg xmlns="http://www.w3.org/2000/svg" id="svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ width="0" height="0" 
+ style="position:absolute;top:0px;left:0px"
+ onload="Init()">
+
+<script type="text/ecmascript">
+   //<![CDATA[
+   var startX;
+   var startY;
+   var width;
+   var height;
+   var centerX;
+   var centerY;
+   var newCirc;
+   var svgNS = "http://www.w3.org/2000/svg";
+   var n = 0;
+   var button = 0;
+   var svg = document.getElementById("svg");
+   
+	 function Init() {
+	 	var image = document.getElementById("image")
+	 	svg.setAttributeNS(null, "width", image.width);
+	 	svg.setAttributeNS(null, "height", image.height);
+	 	document.getElementById("canvas").setAttributeNS(null, "width", image.width);
+	 	document.getElementById("canvas").setAttributeNS(null, "height", image.height);
+	 	}
+
+   function onMouseDown(evt) {
+   	n ++;
+	  document.onselectstart = function () { return false; };
+   	document.ondragstart = function () { return false; };
+ 		startX = evt.clientX;
+ 		startY = evt.clientY;
+ 		newCirc = document.createElementNS(svgNS, "ellipse");
+ 		newCirc.setAttributeNS(null, "style", "stroke: #ffffff; stroke-width: 2; fill: #000000;")
+ 		newCirc.setAttributeNS(null, "id", "circle_"+ n)
+ 		document.getElementById("new").appendChild(newCirc);
+ 		button = 1;
+ 		}
+ 	function onMouseMove(evt) {
+ 		if (button == 1) {
+ 			var offsetX = document.getElementById("div1").offsetLeft
+ 			var offsetY = document.getElementById("div1").offsetTop
+	 		width = (evt.clientX - startX)/2;
+ 			height = (evt.clientY - startY)/2;
+ 			centerX = startX + width - offsetX;
+ 			centerY = startY + height - offsetY; 			
+			newCirc.setAttributeNS(null, "cx", centerX);
+			newCirc.setAttributeNS(null, "cy", centerY);
+ 			newCirc.setAttributeNS(null, "rx", makePositive(width));
+ 			newCirc.setAttributeNS(null, "ry", makePositive(height));
+
+ 				}
+ 		}		
+ 		
+ 	function onMouseUp(evt)	{
+ 		button = 0;
+ 		}
+ 	function undo()	{
+ 		if (n > 0) { 
+	 		document.getElementById("new").removeChild(document.getElementById("circle_" + n));
+ 			n--;
+ 		}
+ 	}
+ 	function makePositive(i) {
+ 		positive = -i>0? -i : i;
+ 		return positive;
+ 	}
+ 	function updateForm() {
+ 	var string = "";
+ 	for(start=1;start <= n; start++){
+ 		var currentCircle = document.getElementById('circle_' + start);
+ 		string = string + currentCircle.attributes.cx.value + ',' + currentCircle.attributes.cy.value + ',' + currentCircle.attributes.rx.value + ',' + currentCircle.attributes.ry.value + ';';
+ 	}
+ 	document.getElementById('coordinates').value = string;
+ 	document.getElementById('form').submit();
+ 	}
+// ]]></script>
+
+<g id="new">
+</g>
+<rect id="canvas" x="0px" y="0px" width="0px" height="0px"
+	opacity="0" pointer-events="visible"
+	onmousedown="onMouseDown(evt)"
+	onmousemove="onMouseMove(evt)"
+	onmouseup="onMouseUp(evt)"/>
+
+</svg>
+
+</div>
+<div class="undo grid_2">
+<input type="button" name="undo" value="undo" onclick="undo()" title="undo" style="position: absolute;bottom: 0px;left:-50px;"/>
+<input type="button" name="update" value="Update" onclick="updateForm()" style="position:absolute;bottom:0px;"/>
+</div>
+</div>
+<form name="post_data" id="form" action="" method="POST">
+{% csrf_token %}
+<input id="coordinates" type="hidden" name="coordinates" value="">
+</form>
+
+{% endblock %}

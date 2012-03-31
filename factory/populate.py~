@@ -6,7 +6,7 @@ import os
 
 def populate_forces():
   print 'Populating Force table.'
-  t = open('incident/static/badge_numbers', 'r')
+  t = open('static/badge_numbers', 'r')
   lines = t.readlines()
   t.close()
   for l in lines:

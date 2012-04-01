@@ -20,4 +20,5 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^incident_images/([\w]{3,50})\.(jpg|jpeg|gif|JPG)$', image),
+	url(r'^incident_thumbs/([\w]{3,50})\.(jpg|jpeg|gif|JPG)$', thumb),
 )

@@ -96,7 +96,7 @@
 
 </div>
 <div class="undo grid_2">
-<input type="button" name="undo" value="undo" onclick="undo()" title="undo" style="position: absolute;bottom: 0px;left:-50px;"/>
+<input type="button" name="undo" value="undo" onclick="undo()" title="undo" style="position: absolute;bottom: -30px;"/>
 <input type="button" name="update" value="Update" onclick="updateForm()" style="position:absolute;bottom:0px;"/>
 </div>
 </div>

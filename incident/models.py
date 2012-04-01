@@ -57,6 +57,7 @@ class Images(models.Model):
 	"""
 	
 	image = models.ImageField(upload_to = 'incident_images/')
+	thumb = models.ImageField(upload_to = 'incident_thumbs/', null=True, blank = True)
 	caption = models.CharField(max_length='200', null=True, blank=True)
 	
 	def __unicode__(self):

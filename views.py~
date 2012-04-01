@@ -27,7 +27,7 @@ def image(request, filename, filetype):
   
 def thumb(request, thumb, filetype):
 
-	f = 'media/incident_thumbs/%s.%s'%(thumb.encode(), filetype.encode())
+	f = 'media/incident_thumbs/%s.%s'%(filename.encode(), filetype.encode())
 	image = open(f)
 	img = image.read()
 	image.close()

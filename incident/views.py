@@ -98,7 +98,7 @@ def force_list(request, badge_code):
 
 def new(request):
 	cop_form_set = modelformset_factory(Cop, extra=2,)
-	image_form_set = modelformset_factory(Images, extra=4)
+	image_form_set = modelformset_factory(Images, extra=4, exclude=('thumb'))
 	c = {}
 	c.update(csrf(request))
 	if request.method == 'POST':#if form has been submitted
@@ -112,9 +112,17 @@ def new(request):
 			for cop in request.POST['incident-cop_string'].split(','):
 				incident.cop.add(Cop.objects.get(badge=cop.strip()))
 			for image in images:
-				incident.image.add(image)
-				image.date = incident.date
+			
+				im = Image.open(image.image.path)
+				if image.image.width > 1280 or image.image.height > 1280:					
+					im.thumbnail((1280,1280))
+					im.save(image.image.path)
+				im.thumbnail((120,120))
+				thumbpath = 'incident_thumbs/%s' % image.image.path.split('/')[-1]
+				im.save('media/%s'%thumbpath)
+				image.thumb = thumbpath
 				image.save()
+				incident.image.add(image)
 			incident.save()	
 			return HttpResponseRedirect('/incident/%s'%incident.id)	
 	else:

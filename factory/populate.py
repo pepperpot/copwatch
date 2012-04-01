@@ -3,6 +3,7 @@ import random
 from datetime import datetime
 import hatemaker
 import os
+import Image
 
 def populate_forces():
   print 'Populating Force table.'
@@ -36,7 +37,12 @@ def populate_images():
   images = ["incident_images/%s" % img for img in os.listdir(image_path)]
   for image in images:
   	caption = 'a bunch of words, just to fill the attribute'
-  	i = models.Images( caption = caption, image = image)
+  	thumb = 'incident_thumbs/%s' % image.split('/')[-1]
+  	tmb = Image.open('media/%s'%image)
+  	tmb.thumbnail((120,120))
+  	tmb.save('media/%s'%thumb)
+  	i = models.Images( caption = caption, image = image, thumb = thumb)
+  	
   	i.save()
   	print "Added image"
 	

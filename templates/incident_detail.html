@@ -11,7 +11,7 @@
 	</div>	
 		{% for image in incident.image.all %}
 	<div class="grid_2 image">
-		<img src="/{{image.image}}" title="{{image.caption}}"/>
+		<img src="/{{image.thumb}}" title="{{image.caption}}"/>
 	</div>
 	{% endfor %}
 	
